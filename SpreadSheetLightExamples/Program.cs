@@ -15,7 +15,6 @@ namespace SpreadSheetLightExamples
         static void Main(string[] args)
         {
             ImportTabTextFile();
-            Console.ReadLine();
         }
 
         /// <summary>
@@ -23,12 +22,27 @@ namespace SpreadSheetLightExamples
         /// </summary>
         private static void ImportTabTextFile()
         {
-            var success = Operations.ImportTabDelimitedTextFile(
-                "Products.txt", 
-                "ProductsImported.xlsx", 
-                "Products");
+            var importFileName = "Products.txt";
+            var excelFileName = "ProductsImported.xlsx";
+            var sheetName = "Products";
 
-            Console.WriteLine(success);
+            var success = Operations.ImportTabDelimitedTextFile(
+                importFileName,
+                excelFileName, 
+                sheetName);
+
+            
+            if (success)
+            {
+                var count = Operations.GetWorkSheetLastRow(excelFileName, sheetName);
+                Console.WriteLine($"Wrote {count} rows to {sheetName} in {excelFileName}");
+            }
+            else
+            {
+                Console.WriteLine("Failed");
+            }
+
+            Console.ReadLine();
         }
 
         /// <summary>

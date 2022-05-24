@@ -10,7 +10,7 @@ namespace SpreadSheetLightLibrary.Classes
 {
     public class Operations
     {
-        public int GetWorkSheetLastRow(string pFileName, string pSheetName)
+        public static int GetWorkSheetLastRow(string pFileName, string pSheetName)
         {
             var lastRow = 0;
 
