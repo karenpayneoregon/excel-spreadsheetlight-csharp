@@ -12,4 +12,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Scripts\" />
+	</ItemGroup>
 </Project>
