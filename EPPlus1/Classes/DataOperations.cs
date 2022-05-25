@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OfficeOpenXml;
+using OfficeOpenXml.Drawing;
 using OfficeOpenXml.Table;
 
 namespace EPPlus1.Classes
@@ -29,8 +30,22 @@ namespace EPPlus1.Classes
             cn.Open();
             var reader = cmd.ExecuteReader();
             using var package = new ExcelPackage();
+            
             var worksheet = package.Workbook.Worksheets.Add("Contacts");
+
+            // import DataTable
             worksheet.Cells["A1"].LoadFromDataReader(reader, true);
+
+            // place an image in for fun
+            var pic = worksheet.Drawings.AddPicture("Landscape", 
+                new FileInfo(
+                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _excelBaseFolder, "oops.png")));
+
+            pic.SetPosition(2, 0, 5, 0);
+            pic.Effect.SetPresetShadow(ePresetExcelShadowType.OuterBottomRight);
+            pic.Effect.OuterShadow.Distance = 10;
+            pic.Effect.SetPresetSoftEdges(ePresetExcelSoftEdgesType.SoftEdge5Pt);
+
 
             worksheet.Cells.AutoFitColumns();
             using (ExcelRange range = worksheet.Cells[$"A1:C{worksheet.Dimension.End.Row}"])
