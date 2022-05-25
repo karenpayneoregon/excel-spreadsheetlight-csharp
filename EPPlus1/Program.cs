@@ -10,14 +10,26 @@ namespace EPPlus1
     {
         static void Main(string[] args)
         {
-            StandardCodesSamples.Sample1();
+            ReadAndImportBackInNewWorkSheet();
             Console.ReadLine();
         }
 
-        [ModuleInitializer]
-        public static void Init1()
+        /// <summary>
+        /// First method reads the first sheet to a DataTable
+        /// Second method writes back to same file in a new sheet
+        ///
+        /// For a real application methods above would be in one method
+        /// </summary>
+        private static void ReadAndImportBackInNewWorkSheet()
         {
-            Console.Title = "Working Excel";
+            var table = StandardCodesSamples.Export();
+            StandardCodesSamples.Import(table);
+        }
+
+        [ModuleInitializer]
+        public static void IntializeStuff()
+        {
+            Console.Title = "Working Excel using EPPlus";
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         }
     }

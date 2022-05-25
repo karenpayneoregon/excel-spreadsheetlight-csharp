@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace EPPlus1.Classes
 {
     public class StandardCodesSamples
     {
+        private static string _excelBaseFolder => "ExcelFiles";
         /// <summary>
         /// Took
         /// https://github.com/EPPlusSoftware/EPPlus.Sample.NetCore/blob/master/02-ReadWorkbook/ReadWorkbookSample.cs
@@ -27,7 +29,7 @@ namespace EPPlus1.Classes
             Table customerTable = ConsoleOperations.DisplayTable();
             
 
-            var filePath = FileUtil.GetFileInfo("02-ReadWorkbook", "Customers.xlsx").FullName;
+            var filePath = FileUtil.GetFileInfo(_excelBaseFolder, "Customers.xlsx").FullName;
             Console.WriteLine("Reading {0}", filePath);
             Console.WriteLine();
             FileInfo existingFile = new FileInfo(filePath);
@@ -83,6 +85,114 @@ namespace EPPlus1.Classes
 
         }
 
+        public static DataTable Export()
+        {
+            var filePath = FileUtil.GetFileInfo(_excelBaseFolder, "Customers.xlsx").FullName;
+            FileInfo existingFile = new(filePath);
+            using ExcelPackage package = new(existingFile);
 
+            var dataTable = ExcelPackageToDataTable(package);
+            
+
+            //create a WorkSheet
+            ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Customers imported");
+
+            //add all the content from the DataTable, starting at cell A1
+            worksheet.Cells["A1"].LoadFromDataTable(dataTable, true);
+
+            return dataTable;
+        }
+
+        public static void Import(DataTable dataTable)
+        {
+            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _excelBaseFolder, "Customers.xlsx");
+            FileInfo existingFile = new(filePath);
+            using ExcelPackage package = new(existingFile);
+
+            var sheetToAdd = "Imported Customers Demo";
+
+            ExcelWorksheet anotherWorksheet = package.Workbook.Worksheets.FirstOrDefault(x => x.Name == sheetToAdd);
+            if (anotherWorksheet is not null)
+            {
+                package.Workbook.Worksheets.Delete(anotherWorksheet);
+            }
+
+            ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(sheetToAdd);
+
+
+            worksheet.Cells["A1"].LoadFromDataTable(dataTable, true);
+
+            package.Save();
+            //package.SaveAs("Karen.xlsx");
+            Console.WriteLine("Done");
+        }
+
+
+        public static DataTable ExcelPackageToDataTable(ExcelPackage excelPackage)
+        {
+            DataTable dt = new();
+
+            // first worksheet
+            ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets[0];
+
+            //check if the worksheet is completely empty
+            if (worksheet.Dimension == null)
+            {
+                return dt;
+            }
+
+            //create a list to hold the column names
+            List<string> columnNames = new();
+
+            //needed to keep track of empty column headers
+            int currentColumn = 1;
+
+            //loop all columns in the sheet and add them to the DataTable
+            foreach (var cell in worksheet.Cells[1, 1, 1, worksheet.Dimension.End.Column])
+            {
+                string columnName = cell.Text.Trim();
+
+                //check if the previous header was empty and add it if it was
+                if (cell.Start.Column != currentColumn)
+                {
+                    columnNames.Add("Header_" + currentColumn);
+                    dt.Columns.Add("Header_" + currentColumn);
+                    currentColumn++;
+                }
+
+                //add the column name to the list to count the duplicates
+                columnNames.Add(columnName);
+
+                //count the duplicate column names and make them unique to avoid the exception
+                //A column named 'Name' already belongs to this DataTable
+                int occurrences = columnNames.Count(x => x.Equals(columnName));
+                if (occurrences > 1)
+                {
+                    columnName = columnName + "_" + occurrences;
+                }
+
+                //add the column to the DataTable
+                dt.Columns.Add(columnName);
+
+                currentColumn++;
+
+            }
+
+            //start adding the contents of the excel file to the DataTable
+            for (int index = 2; index <= worksheet.Dimension.End.Row; index++)
+            {
+                var row = worksheet.Cells[index, 1, index, worksheet.Dimension.End.Column];
+                DataRow newRow = dt.NewRow();
+
+                foreach (var cell in row)
+                {
+                    newRow[cell.Start.Column - 1] = cell.Text;
+                }
+
+                dt.Rows.Add(newRow);
+            }
+
+            return dt;
+        }
     }
 }

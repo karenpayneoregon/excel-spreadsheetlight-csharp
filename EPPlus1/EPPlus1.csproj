@@ -21,10 +21,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="02-ReadWorkbook\Customers.xlsx">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <None Update="ExcelFiles\Customers.xlsx">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="02-ReadWorkbook\ReadWorkbook.xlsx">
+	  <None Update="ExcelFiles\ReadWorkbook.xlsx">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
