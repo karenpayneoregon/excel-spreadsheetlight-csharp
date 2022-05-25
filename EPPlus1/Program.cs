@@ -10,7 +10,9 @@ namespace EPPlus1
     {
         static void Main(string[] args)
         {
-            ReadAndImportBackInNewWorkSheet();
+            //StandardCodesSamples.CreateNewFile();
+            StandardCodesSamples.CreateNewFileWithData();
+            //ReadAndImportBackInNewWorkSheet();
         }
 
         /// <summary>

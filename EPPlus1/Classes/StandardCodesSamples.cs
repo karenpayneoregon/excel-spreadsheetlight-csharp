@@ -14,7 +14,28 @@ namespace EPPlus1.Classes
 {
     public class StandardCodesSamples
     {
+
         private static string _excelBaseFolder => "ExcelFiles";
+
+        public static void CreateNewFile()
+        {
+            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _excelBaseFolder, "NewFile.xlsx");
+            using var package = new ExcelPackage();
+            var worksheet = package.Workbook.Worksheets.Add("FirstSheet");
+            package.Workbook.Properties.Company = "Some company";
+            package.Workbook.Properties.Comments = "Code sample";
+            package.Workbook.Properties.Author = "Karen Payne";
+
+            package.SaveAs(filePath);
+
+        }
+
+        public static void CreateNewFileWithData()
+        {
+            DataOperations.Contacts(_excelBaseFolder);
+
+        }
+
         /// <summary>
         /// Took
         /// https://github.com/EPPlusSoftware/EPPlus.Sample.NetCore/blob/master/02-ReadWorkbook/ReadWorkbookSample.cs

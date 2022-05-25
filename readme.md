@@ -1,13 +1,10 @@
-For teaching how to work with Excel. 
+# Learn how to work with basic Excel operations in C#
 
-Note all coding is done with randomly selected free Excel libraries. Personally my choice is GemBox.SpreadSheet and Asose.Cells which are not cheap but well worth the cost if a developer is doing a lot of Excel work.
 
-- Some examples use Entity Framework Core
-- Most examples use SpreadSheetLight, free Excel library
 
 For ages coders and developers alike believe that when working with Excel that Excel automation is the best way but there are many issues while when working with .xlsx libraries like GemBox, Aspose cells and others solve these problems. 
 
-Problem for those on a shoe-string budget is these libraries are out of reach cost-wise. So this repository I picked one of many free libraries, [SpreadSheetLight](https://spreadsheetlight.com/) to show how to perform common operations for Excel.
+Problem for those on a shoe-string budget is these libraries are out of reach cost-wise. So this repository I picked one of many free libraries, [SpreadSheetLight](https://spreadsheetlight.com/) and [EEPlus](https://www.epplussoftware.com/en) ([license](https://www.epplussoftware.com/en/Home/LgplToPolyform)) to show how to perform common operations for Excel.
 
 Using Excel automation to create and Excel file (not my code)
 
@@ -40,7 +37,7 @@ namespace ConsoleApplication1
 }
 ```
 
-With SpreadSheetLight
+**With SpreadSheetLight**
 
 ```csharp
 public bool CreateNewFile(string pFileName)
@@ -62,3 +59,12 @@ public bool CreateNewFile(string pFileName, string pSheetName)
     return true;
 }
 ```
+
+
+
+# Note all coding is done with randomly selected free Excel libraries. 
+
+Personally my choice is GemBox.SpreadSheet and Asose.Cells which are not cheap but well worth the cost if a developer is doing a lot of Excel work.
+
+- Some examples use Entity Framework Core
+- Most examples use SpreadSheetLight, free Excel library
