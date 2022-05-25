@@ -15,12 +15,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadSheetLightConsoleApp"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadSheetLightExamples", "SpreadSheetLightExamples\SpreadSheetLightExamples.csproj", "{A5846E7D-F37F-460A-ADCB-B33395347B27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpreadSheetLightLibrary", "SpreadSheetLightLibrary\SpreadSheetLightLibrary.csproj", "{8AC676E5-6DBA-4438-8C39-34B070780DD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadSheetLightLibrary", "SpreadSheetLightLibrary\SpreadSheetLightLibrary.csproj", "{8AC676E5-6DBA-4438-8C39-34B070780DD4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EF9737F-47E1-4139-A13B-0C0EFA946349}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{06421E89-4551-4FD3-ABF9-82B2F7E5710F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPPlus1", "EPPlus1\EPPlus1.csproj", "{48FEA5A1-0CFD-4B12-AEED-E34EC04DF298}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +52,10 @@ Global
 		{8AC676E5-6DBA-4438-8C39-34B070780DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AC676E5-6DBA-4438-8C39-34B070780DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AC676E5-6DBA-4438-8C39-34B070780DD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48FEA5A1-0CFD-4B12-AEED-E34EC04DF298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48FEA5A1-0CFD-4B12-AEED-E34EC04DF298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48FEA5A1-0CFD-4B12-AEED-E34EC04DF298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48FEA5A1-0CFD-4B12-AEED-E34EC04DF298}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +66,7 @@ Global
 		{0D593297-6FFA-4FEA-AEE7-0B8AB374D495} = {594837FC-D109-4CBF-B598-FD6F7F8D6EBB}
 		{A5846E7D-F37F-460A-ADCB-B33395347B27} = {594837FC-D109-4CBF-B598-FD6F7F8D6EBB}
 		{8AC676E5-6DBA-4438-8C39-34B070780DD4} = {80810258-67A9-47FA-9C1F-E8F354E99CE3}
+		{48FEA5A1-0CFD-4B12-AEED-E34EC04DF298} = {06421E89-4551-4FD3-ABF9-82B2F7E5710F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {490BCC9D-B540-4589-AFF3-15CD641014BC}
