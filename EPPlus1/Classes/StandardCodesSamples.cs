@@ -29,13 +29,12 @@ namespace EPPlus1.Classes
 
             Table customerTable = ConsoleOperations.DisplayTable();
             
-
             var filePath = FileUtil.GetFileInfo(_excelBaseFolder, "Customers.xlsx").FullName;
 
             Console.WriteLine("Reading {0}", filePath);
             Console.WriteLine();
 
-            FileInfo existingFile = new FileInfo(filePath);
+            FileInfo existingFile = new(filePath);
             using ExcelPackage package = new(existingFile);
             
             ExcelWorksheet worksheet = package.Workbook.Worksheets[0];

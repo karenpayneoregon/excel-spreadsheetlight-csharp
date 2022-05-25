@@ -25,8 +25,9 @@ namespace EPPlus1
             StandardCodesSamples.Import(table);
         }
 
+
         [ModuleInitializer]
-        public static void IntializeStuff()
+        public static void InitializeStuff()
         {
             Console.Title = "Working Excel using EPPlus";
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
