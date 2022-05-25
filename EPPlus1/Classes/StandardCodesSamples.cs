@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EPPlus1.Models;
 using OfficeOpenXml;
+using OfficeOpenXml.Table;
 using Spectre.Console;
 
 namespace EPPlus1.Classes
@@ -30,8 +31,10 @@ namespace EPPlus1.Classes
             
 
             var filePath = FileUtil.GetFileInfo(_excelBaseFolder, "Customers.xlsx").FullName;
+
             Console.WriteLine("Reading {0}", filePath);
             Console.WriteLine();
+
             FileInfo existingFile = new FileInfo(filePath);
             using ExcelPackage package = new(existingFile);
             
@@ -85,6 +88,10 @@ namespace EPPlus1.Classes
 
         }
 
+        /// <summary>
+        /// Export first sheet as a DataTable
+        /// </summary>
+        /// <returns></returns>
         public static DataTable Export()
         {
             var filePath = FileUtil.GetFileInfo(_excelBaseFolder, "Customers.xlsx").FullName;
@@ -93,7 +100,6 @@ namespace EPPlus1.Classes
 
             var dataTable = ExcelPackageToDataTable(package);
             
-
             //create a WorkSheet
             ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Customers imported");
 
@@ -103,6 +109,14 @@ namespace EPPlus1.Classes
             return dataTable;
         }
 
+        /// <summary>
+        /// Import DataTable, in this case from <see cref="Export"/> method into a new sheet.
+        /// For safety, we check if the sheet exists before adding as an exception would be
+        /// thrown if we try to add a new sheet when it already exists
+        ///
+        /// 
+        /// </summary>
+        /// <param name="dataTable"></param>
         public static void Import(DataTable dataTable)
         {
             var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _excelBaseFolder, "Customers.xlsx");
@@ -111,7 +125,9 @@ namespace EPPlus1.Classes
 
             var sheetToAdd = "Imported Customers Demo";
 
-            ExcelWorksheet anotherWorksheet = package.Workbook.Worksheets.FirstOrDefault(x => x.Name == sheetToAdd);
+            ExcelWorksheet anotherWorksheet = package.Workbook.Worksheets.FirstOrDefault(sheet => 
+                sheet.Name == sheetToAdd);
+
             if (anotherWorksheet is not null)
             {
                 package.Workbook.Worksheets.Delete(anotherWorksheet);
@@ -119,12 +135,19 @@ namespace EPPlus1.Classes
 
             ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(sheetToAdd);
 
-
             worksheet.Cells["A1"].LoadFromDataTable(dataTable, true);
 
+            worksheet.Cells.AutoFitColumns();
+
+            using (ExcelRange range = worksheet.Cells[$"A1:G{worksheet.Dimension.End.Row}"])
+            {
+                ExcelTableCollection tableCollection = worksheet.Tables;
+                ExcelTable table = tableCollection.Add(range, "CustomerTable");
+                // https://www.epplussoftware.com/docs/5.8/api/OfficeOpenXml.Table.TableStyles.html
+                table.TableStyle = TableStyles.Dark8;
+            }
+
             package.Save();
-            //package.SaveAs("Karen.xlsx");
-            Console.WriteLine("Done");
         }
 
 

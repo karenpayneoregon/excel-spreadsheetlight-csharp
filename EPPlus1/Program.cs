@@ -11,7 +11,6 @@ namespace EPPlus1
         static void Main(string[] args)
         {
             ReadAndImportBackInNewWorkSheet();
-            Console.ReadLine();
         }
 
         /// <summary>
