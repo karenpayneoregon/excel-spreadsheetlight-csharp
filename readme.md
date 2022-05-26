@@ -83,9 +83,12 @@ public static void CreateNewFile()
 ```
 
 
-# Note all coding is done with randomly selected free Excel libraries. 
+# Note all coding were done with randomly selected free Excel libraries. 
 
-Personally my choice is GemBox.SpreadSheet and Asose.Cells which are not cheap but well worth the cost if a developer is doing a lot of Excel work.
+Personally my choice is `GemBox.SpreadSheet` and `Asose.Cells` which are not cheap but well worth the cost if a developer is doing a lot of Excel work. EPPlus is one to select if on a shoe-string budget and SpreadSheetLight for no budget.
 
 - Some examples use Entity Framework Core
+- One example uses OleDb
 - Most examples use SpreadSheetLight, free Excel library
+- When a database is used the project incudes a script to create the database.
+- Code written in Microsoft Visual Studio 2019, .NET Core 5, C#9 and will work in Microsoft Visual Studio 2022, .NET Core 6.
