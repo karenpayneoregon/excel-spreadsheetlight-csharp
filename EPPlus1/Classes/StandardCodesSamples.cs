@@ -37,10 +37,6 @@ namespace EPPlus1.Classes
         }
 
         /// <summary>
-        /// Took
-        /// https://github.com/EPPlusSoftware/EPPlus.Sample.NetCore/blob/master/02-ReadWorkbook/ReadWorkbookSample.cs
-        ///
-        /// And modified for Customers.xlsx
         /// </summary>
         /// <remarks>
         /// C:\Users\paynek\.nuget\packages\epplus\6.0.4\readme.txt
