@@ -159,6 +159,9 @@ namespace EPPlus1.Classes
 
             worksheet.Cells.AutoFitColumns();
 
+            /*
+             * For this to work, all cell headers must be unique else an exception is thrown
+             */
             using (ExcelRange range = worksheet.Cells[$"A1:G{worksheet.Dimension.End.Row}"])
             {
                 ExcelTableCollection tableCollection = worksheet.Tables;

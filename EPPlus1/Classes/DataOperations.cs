@@ -20,7 +20,9 @@ namespace EPPlus1.Classes
         public static void Contacts(string _excelBaseFolder)
         {
             var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _excelBaseFolder, "Contacts.xlsx");
+            
             using var cn = new SqlConnection() { ConnectionString = ConnectionString };
+
             string selectStatement =
                 "SELECT C.ContactId As Id,C.FirstName + ' ' + C.LastName AS [Contact Name], Countries.Name " + 
                 "FROM Customers AS Cust INNER JOIN Contacts AS C ON Cust.ContactId = C.ContactId "+ 
