@@ -28,7 +28,9 @@ namespace Automation
                     { "C5", null }
                 }
             };
+
             example.ReadCells(fileName,sheetName);
+
             var data = example.ReturnDictionary;
 
             foreach (var kvp in data)

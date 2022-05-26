@@ -28,6 +28,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPPlus1", "EPPlus1\EPPlus1.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation", "Automation\Automation.csproj", "{39549F97-9387-4A92-B36F-5CBB6C7EAD55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OleDbDemoForm", "OleDbDemoForm\OleDbDemoForm.csproj", "{3917210D-56DB-46B9-9C85-953423B1CF95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{39549F97-9387-4A92-B36F-5CBB6C7EAD55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39549F97-9387-4A92-B36F-5CBB6C7EAD55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39549F97-9387-4A92-B36F-5CBB6C7EAD55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3917210D-56DB-46B9-9C85-953423B1CF95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3917210D-56DB-46B9-9C85-953423B1CF95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3917210D-56DB-46B9-9C85-953423B1CF95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3917210D-56DB-46B9-9C85-953423B1CF95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{8AC676E5-6DBA-4438-8C39-34B070780DD4} = {80810258-67A9-47FA-9C1F-E8F354E99CE3}
 		{48FEA5A1-0CFD-4B12-AEED-E34EC04DF298} = {594837FC-D109-4CBF-B598-FD6F7F8D6EBB}
 		{39549F97-9387-4A92-B36F-5CBB6C7EAD55} = {06421E89-4551-4FD3-ABF9-82B2F7E5710F}
+		{3917210D-56DB-46B9-9C85-953423B1CF95} = {06421E89-4551-4FD3-ABF9-82B2F7E5710F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {490BCC9D-B540-4589-AFF3-15CD641014BC}
