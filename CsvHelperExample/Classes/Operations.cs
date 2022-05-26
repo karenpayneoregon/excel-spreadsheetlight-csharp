@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
@@ -41,12 +42,13 @@ namespace CsvHelperExample.Classes
 
         public static DataTable ReadAccounts()
         {
+         
             var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Accounts.csv");
             var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 Encoding = Encoding.UTF8,
                 Delimiter = ",",
-                HasHeaderRecord = false
+                HasHeaderRecord = false,
             };
 
             using (var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -54,13 +56,72 @@ namespace CsvHelperExample.Classes
                 using (var textReader = new StreamReader(fs, Encoding.UTF8))
                 using (var csv = new CsvReader(textReader, configuration))
                 {
+                    
                     DataTable table = new();
-                    using var reader = ObjectReader.Create(csv.GetRecords<Account>().ToList());
+                    try
+                    {
+                        using var reader = ObjectReader.Create(csv.GetRecords<Account>().ToList());
+                        table.Load(reader);
+                    }
+                    catch (Exception ex)
+                    {
+                    }
 
-                    table.Load(reader);
                     return table;
                 }
             }
         }
+        /// <summary>
+        /// How to handle malformed lines
+        /// </summary>
+        public static (bool success, List<Account>) ReadAccounts1(string fileName)
+        {
+            List<Account> accounts = new();
+
+            StringBuilder errorBuilder = new ();
+            
+            var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                Encoding = Encoding.UTF8,
+                Delimiter = ",",
+                HasHeaderRecord = false,
+            };
+
+            using (var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                using (var textReader = new StreamReader(fs, Encoding.UTF8))
+                using (var csv = new CsvReader(textReader, configuration))
+                {
+
+                    while (csv.Read())
+                    {
+                        try
+                        {
+                            var record = csv.GetRecord<Account>();
+                            accounts.Add(record);
+                        }
+                        catch (Exception ex)
+                        {
+                            errorBuilder.AppendLine(ex.Message);
+                        }
+                    }
+                }
+
+                if (errorBuilder.Length >0)
+                {
+                    errorBuilder.Insert(0, $"Errors for {fileName}\n");
+                    File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ParseErrors.txt"), errorBuilder.ToString());
+
+                    return (false, null);
+                }
+                else
+                {
+                    return (true, accounts);
+                }
+            }
+        }
+
+
+
     }
 }

@@ -21,6 +21,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="AccountsBad.csv">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Accounts - Copy.csv">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Accounts.csv">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
