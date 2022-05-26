@@ -83,12 +83,16 @@ public static void CreateNewFile()
 ```
 
 
-# Note all coding were done with randomly selected free Excel libraries. 
+# Notes
 
-Personally my choice is `GemBox.SpreadSheet` and `Asose.Cells` which are not cheap but well worth the cost if a developer is doing a lot of Excel work. EPPlus is one to select if on a shoe-string budget and SpreadSheetLight for no budget.
+Personally my choice is `GemBox.SpreadSheet` and `Asose.Cells` which are not cheap but well worth the cost if a developer is doing a lot of Excel work. `EPPlus` is one to select if on a shoe-string budget and SpreadSheetLight for no budget.
 
-- Some examples use Entity Framework Core
-- One example uses OleDb
-- Most examples use SpreadSheetLight, free Excel library
+- Some examples use `Entity Framework Core`
+- One example uses `OleDb`.
+  - [OleDb](https://docs.microsoft.com/en-us/office/vba/api/excel.oledbconnection) is limiting in many ways e.g. no formatting and prone to issues with data types.
+- Most examples use SpreadSheetLight and EEPlus, free Excel library
+  - EPPlus is thread safe
+  - SpreadSheetLight is not thread safe
+- There is one Excel automation code sample, best to avoide automation as it can have issues with versioning, server side use and is not cross-platform.
 - When a database is used the project incudes a script to create the database.
 - Code written in Microsoft Visual Studio 2019, .NET Core 5, C#9 and will work in Microsoft Visual Studio 2022, .NET Core 6.

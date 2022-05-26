@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OleDbDemoForm", "OleDbDemoF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuilderPatternGenerate", "BuilderPatternGenerate\BuilderPatternGenerate.csproj", "{6CBFD0CC-2CFE-43B3-BA43-A91F3476ED29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvHelperExample", "CsvHelperExample\CsvHelperExample.csproj", "{F5F51C94-CF74-479E-8FE6-9D5E67F38352}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{6CBFD0CC-2CFE-43B3-BA43-A91F3476ED29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CBFD0CC-2CFE-43B3-BA43-A91F3476ED29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CBFD0CC-2CFE-43B3-BA43-A91F3476ED29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F51C94-CF74-479E-8FE6-9D5E67F38352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F51C94-CF74-479E-8FE6-9D5E67F38352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F51C94-CF74-479E-8FE6-9D5E67F38352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F51C94-CF74-479E-8FE6-9D5E67F38352}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{39549F97-9387-4A92-B36F-5CBB6C7EAD55} = {06421E89-4551-4FD3-ABF9-82B2F7E5710F}
 		{3917210D-56DB-46B9-9C85-953423B1CF95} = {06421E89-4551-4FD3-ABF9-82B2F7E5710F}
 		{6CBFD0CC-2CFE-43B3-BA43-A91F3476ED29} = {06421E89-4551-4FD3-ABF9-82B2F7E5710F}
+		{F5F51C94-CF74-479E-8FE6-9D5E67F38352} = {594837FC-D109-4CBF-B598-FD6F7F8D6EBB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {490BCC9D-B540-4589-AFF3-15CD641014BC}

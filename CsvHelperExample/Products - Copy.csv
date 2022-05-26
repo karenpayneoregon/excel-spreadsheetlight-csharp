@@ -1,0 +1,4 @@
+ProductID,ProductName,UnitPrice,UnitsInStock,DiscontinuedDate
+1,Chai,1.00,39,2022-02-28 13:00:00.0000000
+2,Chang,19.00,17,2022-02-28 14:00:00.0000000
+3,Aniseed Syrup,10.00,13,2022-02-28 15:00:00.0000000
