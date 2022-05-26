@@ -17,17 +17,17 @@ namespace OleDbDemoForm
         public Form1()
         {
             InitializeComponent();
+            Example.Run("Somefile.xlsx");
             Shown += OnShown;
         }
 
         private void OnShown(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = Operations.GetData();
+            dataGridView1.DataSource = Operations.GetPeopleFromExcel();
             dataGridView1.FixHeaders();
             dataGridView1.ExpandColumns();
             dataGridView1.NoSort();
         }
-
-
+        
     }
 }

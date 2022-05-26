@@ -3,39 +3,23 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
+using static OleDbDemoForm.Classes.OleDbHelpers;
 
 namespace OleDbDemoForm.Classes
 {
     public class Operations
     {
-        public static string ConnectionString(string FileName)
-        {
-            OleDbConnectionStringBuilder Builder = new();
-            if (System.IO.Path.GetExtension(FileName).ToUpper() == ".XLS")
-            {
-                Builder.Provider = "Microsoft.Jet.OLEDB.4.0";
-                Builder.Add("Extended Properties", "Excel 8.0;IMEX=1;HDR=No;");
-            }
-            else
-            {
-                Builder.Provider = "Microsoft.ACE.OLEDB.12.0";
-                Builder.Add("Extended Properties", "Excel 12.0;IMEX=1;HDR=Yes;");
-            }
 
-            Builder.DataSource = FileName;
-
-            return Builder.ToString();
-
-        }
-        public static DataTable GetData()
+        public static DataTable GetPeopleFromExcel()
         {
             DataTable genderTable = new DataTable();
             DataTable personTable = new DataTable();
 
-            string FileName = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "People.xlsx");
+            string FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "People.xlsx");
             using OleDbConnection cn = new() { ConnectionString = ConnectionString(FileName) };
             using OleDbCommand cmd = new() { Connection = cn };
             cmd.CommandText = "SELECT GenderId, Role FROM [Gender$]";
@@ -49,26 +33,38 @@ namespace OleDbDemoForm.Classes
             personTable.Columns.Add("Gender", typeof(string));
             personTable.Columns["Gender"].SetOrdinal(4);
 
+            // easy way to hide columns
             //personTable.Columns["Id"].ColumnMapping = MappingType.Hidden;
             //personTable.Columns["Gender"].ColumnMapping = MappingType.Hidden;
 
-            foreach (DataColumn column in personTable.Columns)
-            {
-                Debug.WriteLine($"{column.ColumnName}  {column.DataType}");
-            }
+            /*
+             * In many cases a developer gets column types wrong, this will provide
+             * what .NET thinks it is vs what you think it is.
+             */
+            //foreach (DataColumn column in personTable.Columns)
+            //{
+            //    Debug.WriteLine($"{column.ColumnName}  {column.DataType}");
+            //}
 
-
+            /*
+             * Cheap way to get gender 
+             */
             foreach (DataRow row in personTable.Rows)
             {
                 row.SetField("Gender", 
                     genderTable
                         .AsEnumerable()
+                        // ReSharper disable once CompareOfFloatsByEqualityOperator
                         .FirstOrDefault(dataRow => dataRow.Field<double>("GenderId") == 
                                                    row.Field<double>("GenderId"))!
                         .Field<string>("Role"));
             }
 
+            // want to sort?
+            // personTable.DefaultView.Sort = "LastName ASC";
+
             return personTable;
+
         }
 
 	}

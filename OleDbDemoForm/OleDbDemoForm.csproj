@@ -6,9 +6,18 @@
 		<TargetFramework>net5.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="readme.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="readme.md" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="System.Data.OleDb" Version="5.0.0" />
 	</ItemGroup>
+
 	<ItemGroup>
 	  <None Update="People.xlsx">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
