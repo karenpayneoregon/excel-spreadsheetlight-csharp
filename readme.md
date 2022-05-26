@@ -1,6 +1,12 @@
 # Learn how to work with basic Excel operations in C#
 
+![Title](assets/Title.png)
 
+For the majority of code samples they can be used cross-platform.
+
+![Title1](assets/Title1.png)
+
+# Stuck on automation
 
 For ages coders and developers alike believe that when working with Excel that Excel automation is the best way but there are many issues while when working with .xlsx libraries like GemBox, Aspose cells and others solve these problems. 
 
@@ -37,6 +43,8 @@ namespace ConsoleApplication1
 }
 ```
 
+# Moving to Open XML
+
 **With SpreadSheetLight**
 
 ```csharp
@@ -60,6 +68,19 @@ public bool CreateNewFile(string pFileName, string pSheetName)
 }
 ```
 
+# EPPlus
+
+Create a new file
+
+```csharp
+public static void CreateNewFile()
+{
+    var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _excelBaseFolder, "NewFile.xlsx");
+    using var package = new ExcelPackage();
+    var worksheet = package.Workbook.Worksheets.Add("FirstSheet");
+    package.SaveAs(filePath);
+}
+```
 
 
 # Note all coding is done with randomly selected free Excel libraries. 
