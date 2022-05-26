@@ -11,7 +11,6 @@ namespace OleDbDemoForm.Classes
                 .HasHeader()
                 .WithIMEX(1).Build();
             
-            Debug.WriteLine(connectionBuilder.ConnectionString);
         }
     }
 }

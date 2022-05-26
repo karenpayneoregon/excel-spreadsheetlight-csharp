@@ -1,3 +1,8 @@
+﻿# About
+
+This project purpose, to create a builder for OleDb/Excel connection strings then transported to OleDbDemoForm.
+
+```csharp
 using System;
 using System.Data.OleDb;
 using System.IO;
@@ -83,3 +88,25 @@ namespace BuilderPatternGenerate.Models
         }
     }
 }
+```
+
+**Example**
+
+```csharp
+namespace OleDbDemoForm.Classes
+{
+    public class Example
+    {
+        public static void Run(string fileName)
+        {
+            var connectionBuilder = new ExcelHelperBuilder()
+                .UsingFileName(fileName)
+                .HasHeader()
+                .WithIMEX(1).Build();
+            
+            Debug.WriteLine(connectionBuilder.ConnectionString);
+        }
+    }
+}
+```
+
