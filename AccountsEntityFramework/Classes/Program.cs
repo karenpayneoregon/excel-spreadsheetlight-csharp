@@ -20,7 +20,11 @@ namespace AccountsHasConversion
                 Active = false,
                 CreatedDate = new DateTime(2022, 5, 2),
                 Email = "Abe@example.com",
-                Roles = new[] { "Admin", "Moderator" }
+                Roles = new[]
+                {
+                    "Admin", 
+                    "Moderator"
+                }
             };
 
             return JsonConvert.DeserializeObject<Account>(JsonConvert.SerializeObject(account, Formatting.Indented));
@@ -72,7 +76,7 @@ namespace AccountsHasConversion
         [ModuleInitializer]
         public static void Init()
         {
-            Console.Title = "Code sample";
+            Console.Title = "Code sample: EF Core HasConversion";
         }
 
 
