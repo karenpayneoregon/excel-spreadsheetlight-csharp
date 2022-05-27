@@ -7,6 +7,7 @@ namespace DataTableToSheet
     {
         static void Main()
         {
+            // Karen has Professional version which has been used in several apps
             // If using Professional version, put your serial key below.
             SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
 
