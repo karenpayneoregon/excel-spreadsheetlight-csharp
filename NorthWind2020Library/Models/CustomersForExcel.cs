@@ -3,7 +3,7 @@
 namespace NorthWind2020Library.Models
 {
     /// <summary>
-    /// Container for exporting <see cref="Customers"/>
+    /// Container for exporting <see cref="Customers"/> to Excel
     /// </summary>
     public class CustomersForExcel
     {

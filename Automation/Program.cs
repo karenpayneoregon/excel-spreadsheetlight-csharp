@@ -12,9 +12,11 @@ namespace Automation
     {
         static void Main(string[] args)
         {
-            Console.Title = "Code sample - Sequence missing?";
+            Console.Title = "Code sample - Excel automation";
+
             var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "People.xlsx");
             var sheetName = "People";
+
             ExcelBaseExample example = new ExcelBaseExample
             {
                 ReturnDictionary = new Dictionary<string, object>()
@@ -41,7 +43,6 @@ namespace Automation
             Console.ReadLine();
 
         }
-
  
     }
 }

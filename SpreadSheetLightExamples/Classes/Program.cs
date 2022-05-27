@@ -10,7 +10,7 @@ namespace SpreadSheetLightExamples
         [ModuleInitializer]
         public static void Init()
         {
-            Console.Title = "Code sample";
+            Console.Title = "Code sample: SpreadSheetLight import from text file";
         }
     }
 }

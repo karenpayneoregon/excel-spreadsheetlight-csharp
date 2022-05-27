@@ -12,6 +12,10 @@ using FastMember;
 
 namespace CsvHelperExample.Classes
 {
+    /// <summary>
+    /// Provides an two examples for reading data known to be clean and one
+    /// example where data may be malformed
+    /// </summary>
     class Operations
     {
         public static DataTable ReadProducts()
@@ -110,7 +114,11 @@ namespace CsvHelperExample.Classes
                 if (errorBuilder.Length >0)
                 {
                     errorBuilder.Insert(0, $"Errors for {fileName}\n");
-                    File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ParseErrors.txt"), errorBuilder.ToString());
+
+                    File.WriteAllText(
+                        Path.Combine(
+                            AppDomain.CurrentDomain.BaseDirectory,"ParseErrors.txt"), 
+                        errorBuilder.ToString());
 
                     return (false, null);
                 }

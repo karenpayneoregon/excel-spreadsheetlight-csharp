@@ -52,7 +52,7 @@ namespace Automation.Classes
                     sheetNames.Add(xlWorkSheet.Name);
                     annihilationList.Add(xlWorkSheet);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     annihilationList.Add(xlWorkSheet);
                 }

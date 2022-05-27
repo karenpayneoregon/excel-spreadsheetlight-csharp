@@ -55,6 +55,7 @@ namespace Automation.Classes
         public ExcelLast UsedRowsColumns(string fileName, string sheetName)
         {
 
+            // ReSharper disable once LocalFunctionHidesMethod
             void ReleaseComObject(object pComObject)
             {
                 try

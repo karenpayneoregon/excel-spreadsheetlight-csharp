@@ -13,16 +13,36 @@ namespace SpreadSheetLightImportDataTable.Classes
         public delegate void OnErrorDelegate(Exception exception);
         public static event OnErrorDelegate OnErrorEvent;
 
+        /// <summary>
+        /// Does a worksheet exists in an Excel file
+        /// </summary>
+        /// <param name="document">Instance of a <see cref="SLDocument"/></param>
+        /// <param name="sheetName">Sheet name to determine if it exists in <see cref="document"/></param>
+        /// <returns></returns>
         public static bool SheetExists(SLDocument document, string sheetName) 
             => document.GetSheetNames(false).Any((name) 
                 => string.Equals(name, sheetName, StringComparison.CurrentCultureIgnoreCase));
 
+        /// <summary>
+        /// Get all sheet names in an Excel file
+        /// </summary>
+        /// <param name="fileName">Existing Excel file without a password</param>
+        /// <returns>Sheet names in ordinal order</returns>
+        /// <remarks>
+        /// Both OleDb and automation return sheet names in A-Z order
+        /// </remarks>
         public static List<string> SheetNames(string fileName)
         {
             using var document = new SLDocument(fileName);
             return document.GetSheetNames(false);
         }
 
+        /// <summary>
+        /// Remove <see cref="sheetName"/> if exists and is not the sole sheet in <see cref="fileName"/>
+        /// </summary>
+        /// <param name="fileName">Excel file</param>
+        /// <param name="sheetName">Sheet name</param>
+        /// <returns>success</returns>
         public static bool RemoveWorkSheet(string fileName, string sheetName)
         {
             using var document = new SLDocument(fileName);
@@ -52,6 +72,12 @@ namespace SpreadSheetLightImportDataTable.Classes
             }
         }
 
+        /// <summary>
+        /// Add new sheet to <see cref="fileName"/> if <see cref="sheetName"/> is not present
+        /// </summary>
+        /// <param name="fileName">Excel file</param>
+        /// <param name="sheetName">sheet name</param>
+        /// <returns></returns>
         public static bool AddNewSheet(string fileName, string sheetName)
         {
             
@@ -72,6 +98,11 @@ namespace SpreadSheetLightImportDataTable.Classes
             }
         }
 
+        /// <summary>
+        /// Add multiple sheets to an Excel file bypassing any existing sheets with the same name
+        /// </summary>
+        /// <param name="fileName">Excel file</param>
+        /// <param name="nameList">list of sheet names</param>
         public static void AddSheets(string fileName, List<string> nameList)
         {
             int counter = 0;
@@ -149,6 +180,7 @@ namespace SpreadSheetLightImportDataTable.Classes
                 document.SaveAs(fileName);
 
                 return (true, null);
+
             }
             catch (Exception exception)
             {
@@ -166,16 +198,17 @@ namespace SpreadSheetLightImportDataTable.Classes
         /// </remarks>
         public int GetWorkSheetLastRow(string pFileName, string pSheetName)
         {
-            var lastRow = 0;
+
 
             using var document = new SLDocument(pFileName, pSheetName);
+
             /*
              * get statistics, in this case we want the last used row so we
              * simply index into EndRowIndex yet there are more properties.
              */
-            lastRow = document.GetWorksheetStatistics().EndRowIndex;
 
-            return lastRow;
+            return document.GetWorksheetStatistics().EndRowIndex;
+
         }
     }
 }

@@ -22,14 +22,16 @@ namespace SpreadSheetLightConsoleApp.Classes
 
             try
             {
-                using (var document = new SLDocument(searchItem.FileName, searchItem.SheetName))
+                using (SLDocument document = new(searchItem.FileName, searchItem.SheetName))
                 {
 
                     var stats = document.GetWorksheetStatistics();
 
+                    // start on first column to last known column
                     for (int columnIndex = 1; columnIndex < stats.EndColumnIndex + 1; columnIndex++)
                     {
 
+                        // from first to last row
                         for (int rowIndex = 1; rowIndex < stats.EndRowIndex + 1; rowIndex++)
                         {
                             if (document.GetCellValueAsString(rowIndex, columnIndex).Equals(searchItem.Token, searchItem.StringComparison))

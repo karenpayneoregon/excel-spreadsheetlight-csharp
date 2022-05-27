@@ -11,9 +11,6 @@
         /// </summary>
         public int Column { get; set; }
 
-        public override string ToString()
-        {
-            return $"Row: {Row} Col: {Column}";
-        }
+        public override string ToString() => $"Row: {Row} Col: {Column}";
     }
 }
