@@ -174,7 +174,7 @@ namespace Automation.Classes
         /// <param name="pSheetName"></param>
         public void ReadCells(string pFileName, string pSheetName)
         {
-
+            // local method
             void ReleaseComObject(object pComObject)
             {
                 try
@@ -443,6 +443,7 @@ namespace Automation.Classes
         /// </summary>
         public void ExportToDelimited_2()
         {
+            // local method
             void ReleaseComObject(object pComObject)
             {
                 try
