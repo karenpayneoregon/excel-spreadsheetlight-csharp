@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsvHelperExample", "CsvHelp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forms projects", "Forms projects", "{86E747DA-DD0D-459B-B9DA-77157F249A0D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTableToSheet", "GemboxDataTableSimple\DataTableToSheet.csproj", "{B935B706-F888-41AF-9FB2-879ACDE0E8D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{F5F51C94-CF74-479E-8FE6-9D5E67F38352}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5F51C94-CF74-479E-8FE6-9D5E67F38352}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5F51C94-CF74-479E-8FE6-9D5E67F38352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B935B706-F888-41AF-9FB2-879ACDE0E8D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B935B706-F888-41AF-9FB2-879ACDE0E8D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B935B706-F888-41AF-9FB2-879ACDE0E8D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B935B706-F888-41AF-9FB2-879ACDE0E8D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{3917210D-56DB-46B9-9C85-953423B1CF95} = {86E747DA-DD0D-459B-B9DA-77157F249A0D}
 		{6CBFD0CC-2CFE-43B3-BA43-A91F3476ED29} = {06421E89-4551-4FD3-ABF9-82B2F7E5710F}
 		{F5F51C94-CF74-479E-8FE6-9D5E67F38352} = {594837FC-D109-4CBF-B598-FD6F7F8D6EBB}
+		{B935B706-F888-41AF-9FB2-879ACDE0E8D8} = {594837FC-D109-4CBF-B598-FD6F7F8D6EBB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {490BCC9D-B540-4589-AFF3-15CD641014BC}
