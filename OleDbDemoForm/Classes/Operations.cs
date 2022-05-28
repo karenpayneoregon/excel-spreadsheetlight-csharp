@@ -33,6 +33,7 @@ namespace OleDbDemoForm.Classes
             personTable.Columns.Add("Gender", typeof(string));
             personTable.Columns["Gender"].SetOrdinal(4);
 
+
             // easy way to hide columns
             //personTable.Columns["Id"].ColumnMapping = MappingType.Hidden;
             //personTable.Columns["Gender"].ColumnMapping = MappingType.Hidden;

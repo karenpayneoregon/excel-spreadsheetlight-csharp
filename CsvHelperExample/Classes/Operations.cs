@@ -55,22 +55,15 @@ namespace CsvHelperExample.Classes
                 HasHeaderRecord = false,
             };
 
-            using (var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (FileStream fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 using (var textReader = new StreamReader(fs, Encoding.UTF8))
                 using (var csv = new CsvReader(textReader, configuration))
                 {
                     
                     DataTable table = new();
-                    try
-                    {
-                        using var reader = ObjectReader.Create(csv.GetRecords<Account>().ToList());
-                        table.Load(reader);
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-
+                    using var reader = ObjectReader.Create(csv.GetRecords<Account>().ToList());
+                    table.Load(reader);
                     return table;
                 }
             }

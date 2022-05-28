@@ -20,7 +20,9 @@ namespace EPPlus1.Classes
         public static void CreateNewFile()
         {
             var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _excelBaseFolder, "NewFile.xlsx");
+
             using var package = new ExcelPackage();
+
             var worksheet = package.Workbook.Worksheets.Add("FirstSheet");
             package.Workbook.Properties.Company = "Some company";
             package.Workbook.Properties.Comments = "Code sample";

@@ -68,6 +68,7 @@ namespace SpreadSheetLightImportDataTable.Classes
             /*
              * Import DataTable to first row, first column in Sheet1 and include column names
              */
+
             document.ImportDataTable(1, SLConvert.ToColumnIndex("A"), table, true);
 
             /*

@@ -8,7 +8,8 @@ namespace CsvHelperExample
     {
         static void Main(string[] args)
         {
-            WellFormedData();
+            //WellFormedData();
+            MalFormedData();
         }
         private static void WellFormedData()
         {
