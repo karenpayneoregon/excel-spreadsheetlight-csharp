@@ -51,6 +51,8 @@
     <Compile Include="Classes\ExcelBase.cs" />
     <Compile Include="Classes\ExcelBaseExample.cs" />
     <Compile Include="Classes\ExcelLast.cs" />
+    <Compile Include="Classes\ExcelOpenOperation.cs" />
+    <Compile Include="Classes\ExceptionInformation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
