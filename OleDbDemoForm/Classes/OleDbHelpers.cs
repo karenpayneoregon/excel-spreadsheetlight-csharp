@@ -17,6 +17,7 @@ namespace OleDbDemoForm.Classes
         public static string ConnectionString(string FileName)
         {
             OleDbConnectionStringBuilder Builder = new();
+            
             if (System.IO.Path.GetExtension(FileName).ToUpper() == ".XLS")
             {
                 Builder.Provider = "Microsoft.Jet.OLEDB.4.0";

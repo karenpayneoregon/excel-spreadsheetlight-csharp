@@ -45,7 +45,8 @@ namespace SpreadSheetLightLibrary.Classes
         public bool AddNewSheet(string fileName, string sheetName)
         {
             using SLDocument document = new(fileName);
-            if (!(document.GetSheetNames(false).Any((workSheetName) => string.Equals(workSheetName, sheetName, StringComparison.CurrentCultureIgnoreCase))))
+            if (!(document.GetSheetNames(false)
+                    .Any((workSheetName) => string.Equals(workSheetName, sheetName, StringComparison.CurrentCultureIgnoreCase))))
             {
                 document.AddWorksheet(sheetName);
                 document.Save();
@@ -67,7 +68,7 @@ namespace SpreadSheetLightLibrary.Classes
         {
             using SLDocument document = new(fileName);
             var workSheets = document.GetSheetNames(false);
-            if (workSheets.Any((workSheetName) => workSheetName.ToLower() == sheetName.ToLower()))
+            if (workSheets.Any((workSheetName) => string.Equals(workSheetName, sheetName, StringComparison.CurrentCultureIgnoreCase)))
             {
                 if (workSheets.Count > 1)
                 {
@@ -120,7 +121,7 @@ namespace SpreadSheetLightLibrary.Classes
             dateStyle.FormatCode = "mm-dd-yyyy";
 
 
-            Dictionary<string, DateTime> dictDates = new Dictionary<string, DateTime>()
+            Dictionary<string, DateTime> dictDates = new()
             {
                 {
                     "H4", new DateTime(2017,

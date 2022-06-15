@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace BuilderPatternGenerate.Models
 {
     public class ExcelHelper
@@ -17,9 +12,5 @@ namespace BuilderPatternGenerate.Models
         public string ConnectionString { get; set; }
     }
 
-    public enum ExcelType
-    {
-        XLS,
-        XLSX
-    }
+
 }

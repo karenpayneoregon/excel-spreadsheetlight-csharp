@@ -11,7 +11,7 @@ namespace EPPlus1
         static void Main(string[] args)
         {
             //StandardCodesSamples.CreateNewFile();
-            //StandardCodesSamples.CreateNewFileWithData();
+            StandardCodesSamples.CreateNewFileWithData();
             //ReadAndImportBackInNewWorkSheet();
         }
 

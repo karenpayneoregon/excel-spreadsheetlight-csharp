@@ -14,7 +14,8 @@ namespace SpreadSheetLightExamples
     {
         static void Main(string[] args)
         {
-            ImportTabTextFile();
+            //ImportTabTextFile();
+            CreatePopulateCustomerData();
         }
 
         /// <summary>
