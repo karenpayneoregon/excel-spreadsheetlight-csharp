@@ -21,6 +21,20 @@ namespace SpreadSheetLightImportDataTable.Classes
 {
     public class NorthWindOperations
     {
+
+        public static void ExportToExcel(DataTable table, string fileName, bool includeHeader, string sheetName)
+        {
+            using var document = new SLDocument();
+
+            // import to first row, first column
+            document.ImportDataTable(1, SLConvert.ToColumnIndex("A"), table, includeHeader);
+
+            // give sheet a useful name
+            document.RenameWorksheet(SLDocument.DefaultFirstSheetName, sheetName);
+
+            document.SaveAs(fileName);
+        }
+
         /// <summary>
         /// Convert a list to a DataTable for SpreadSheetLight to import using one method.
         /// </summary>
