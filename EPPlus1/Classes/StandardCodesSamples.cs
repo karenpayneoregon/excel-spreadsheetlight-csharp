@@ -131,8 +131,6 @@ namespace EPPlus1.Classes
         /// Import DataTable, in this case from <see cref="Export"/> method into a new sheet.
         /// For safety, we check if the sheet exists before adding as an exception would be
         /// thrown if we try to add a new sheet when it already exists
-        ///
-        /// 
         /// </summary>
         /// <param name="dataTable"></param>
         public static void Import(DataTable dataTable)
