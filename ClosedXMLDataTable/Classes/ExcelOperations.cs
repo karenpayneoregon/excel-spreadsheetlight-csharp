@@ -46,5 +46,13 @@ namespace ClosedXMLDataTable.Classes
             return table;
         }
 
+        public static void WriteToCell(string reportFilePath, int row, int col, string value)
+        {
+            using var workbook = new XLWorkbook(reportFilePath);
+            var worksheet = workbook.Worksheets.Worksheet(1);
+            worksheet.Cell(row, col).Value = value;
+            workbook.SaveAs(reportFilePath);
+        }
+
     }
 }
