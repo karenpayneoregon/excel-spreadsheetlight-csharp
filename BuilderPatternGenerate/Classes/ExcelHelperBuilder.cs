@@ -1,13 +1,14 @@
 using System.Data.OleDb;
+using BuilderPatternGenerate.Models;
 
-namespace OleDbDemoForm.Classes;
+namespace BuilderPatternGenerate.Classes;
 
 public class ExcelHelperBuilder
 {
     private string _fileName = "";
     private int _iMEX = 1;
     private bool _hasHeader = true;
-        
+
     public ExcelHelper Build() =>
         new()
         {
@@ -22,7 +23,7 @@ public class ExcelHelperBuilder
     /// </summary>
     /// <param name="fileName"></param>
     /// <returns></returns>
-    public ExcelHelperBuilder UsingFileName(string fileName)
+    public ExcelHelperBuilder WithFileName(string fileName)
     {
         _fileName = fileName;
         return this;
@@ -33,6 +34,7 @@ public class ExcelHelperBuilder
     /// 0 = Export mode
     /// 1 = intermix numbers
     /// 2 = Linked mode (full update capabilities)
+    /// 3
     /// </code>
     /// </summary>
     /// <param name="value"></param>
@@ -47,13 +49,11 @@ public class ExcelHelperBuilder
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    public ExcelHelperBuilder HasHeader(bool value = true)
+    public ExcelHelperBuilder WithHasHeader(bool value)
     {
         _hasHeader = value;
         return this;
     }
-
-    private string[] validExtensions => new [] { ".xlsx", ".xls" };
 
     public string InternalConnectionString()
     {
@@ -61,15 +61,6 @@ public class ExcelHelperBuilder
         {
             throw new Exception("Must include a file name");
         }
-            
-        var knownFileExtension = validExtensions.Contains(Path.GetExtension(_fileName), 
-            StringComparer.OrdinalIgnoreCase);
-
-        if (!knownFileExtension)
-        {
-            throw new Exception("unknown file extensions");
-        }
-            
 
         var header = _hasHeader ? "Yes" : "No";
 
@@ -87,6 +78,7 @@ public class ExcelHelperBuilder
         }
 
         builder.DataSource = _fileName!;
+
         return builder.ConnectionString;
     }
 }

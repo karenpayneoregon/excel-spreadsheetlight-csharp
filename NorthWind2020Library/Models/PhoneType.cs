@@ -3,18 +3,17 @@
 #nullable disable
 using System.Collections.Generic;
 
-namespace NorthWind2020Library.Models
+namespace NorthWind2020Library.Models;
+
+public partial class PhoneType
 {
-    public partial class PhoneType
+    public PhoneType()
     {
-        public PhoneType()
-        {
-            ContactDevices = new HashSet<ContactDevices>();
-        }
-
-        public int PhoneTypeIdenitfier { get; set; }
-        public string PhoneTypeDescription { get; set; }
-
-        public virtual ICollection<ContactDevices> ContactDevices { get; set; }
+        ContactDevices = new HashSet<ContactDevices>();
     }
+
+    public int PhoneTypeIdenitfier { get; set; }
+    public string PhoneTypeDescription { get; set; }
+
+    public virtual ICollection<ContactDevices> ContactDevices { get; set; }
 }

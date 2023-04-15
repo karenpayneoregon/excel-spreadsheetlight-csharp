@@ -3,14 +3,13 @@
 #nullable disable
 using NorthWind2020ConsoleApp.Models;
 
-namespace NorthWind2020Library.Models
-{
-    public partial class EmployeeTerritories
-    {
-        public int EmployeeId { get; set; }
-        public string TerritoryId { get; set; }
+namespace NorthWind2020Library.Models;
 
-        public virtual Employees Employee { get; set; }
-        public virtual Territories Territory { get; set; }
-    }
+public partial class EmployeeTerritories
+{
+    public int EmployeeId { get; set; }
+    public string TerritoryId { get; set; }
+
+    public virtual Employees Employee { get; set; }
+    public virtual Territories Territory { get; set; }
 }

@@ -3,16 +3,15 @@
 #nullable disable
 using NorthWind2020ConsoleApp.Models;
 
-namespace NorthWind2020Library.Models
-{
-    public partial class ContactDevices
-    {
-        public int Id { get; set; }
-        public int? ContactId { get; set; }
-        public int? PhoneTypeIdentifier { get; set; }
-        public string PhoneNumber { get; set; }
+namespace NorthWind2020Library.Models;
 
-        public virtual Contacts Contact { get; set; }
-        public virtual PhoneType PhoneTypeIdentifierNavigation { get; set; }
-    }
+public partial class ContactDevices
+{
+    public int Id { get; set; }
+    public int? ContactId { get; set; }
+    public int? PhoneTypeIdentifier { get; set; }
+    public string PhoneNumber { get; set; }
+
+    public virtual Contacts Contact { get; set; }
+    public virtual PhoneType PhoneTypeIdentifierNavigation { get; set; }
 }

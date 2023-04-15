@@ -4,22 +4,21 @@
 using System.Collections.Generic;
 using NorthWind2020ConsoleApp.Models;
 
-namespace NorthWind2020Library.Models
+namespace NorthWind2020Library.Models;
+
+public partial class ContactType
 {
-    public partial class ContactType
+    public ContactType()
     {
-        public ContactType()
-        {
-            Contacts = new HashSet<Contacts>();
-            Customers = new HashSet<Customers>();
-            Employees = new HashSet<Employees>();
-        }
-
-        public int ContactTypeIdentifier { get; set; }
-        public string ContactTitle { get; set; }
-
-        public virtual ICollection<Contacts> Contacts { get; set; }
-        public virtual ICollection<Customers> Customers { get; set; }
-        public virtual ICollection<Employees> Employees { get; set; }
+        Contacts = new HashSet<Contacts>();
+        Customers = new HashSet<Customers>();
+        Employees = new HashSet<Employees>();
     }
+
+    public int ContactTypeIdentifier { get; set; }
+    public string ContactTitle { get; set; }
+
+    public virtual ICollection<Contacts> Contacts { get; set; }
+    public virtual ICollection<Customers> Customers { get; set; }
+    public virtual ICollection<Employees> Employees { get; set; }
 }

@@ -4,18 +4,17 @@
 using System.Collections.Generic;
 using NorthWind2020ConsoleApp.Models;
 
-namespace NorthWind2020Library.Models
+namespace NorthWind2020Library.Models;
+
+public partial class Region
 {
-    public partial class Region
+    public Region()
     {
-        public Region()
-        {
-            Territories = new HashSet<Territories>();
-        }
-
-        public int RegionId { get; set; }
-        public string RegionDescription { get; set; }
-
-        public virtual ICollection<Territories> Territories { get; set; }
+        Territories = new HashSet<Territories>();
     }
+
+    public int RegionId { get; set; }
+    public string RegionDescription { get; set; }
+
+    public virtual ICollection<Territories> Territories { get; set; }
 }

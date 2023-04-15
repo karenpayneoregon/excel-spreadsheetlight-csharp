@@ -3,13 +3,12 @@
 #nullable disable
 using System;
 
-namespace NorthWind2020Library.Models
+namespace NorthWind2020Library.Models;
+
+public partial class BusinessEntityPhone
 {
-    public partial class BusinessEntityPhone
-    {
-        public int BusinessEntityPhoneId { get; set; }
-        public string PhoneNumber { get; set; }
-        public int? PhoneNumberTypeId { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-    }
+    public int BusinessEntityPhoneId { get; set; }
+    public string PhoneNumber { get; set; }
+    public int? PhoneNumberTypeId { get; set; }
+    public DateTime? ModifiedDate { get; set; }
 }
