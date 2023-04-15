@@ -5,6 +5,7 @@ using System.Linq;
 using DocumentFormat.OpenXml.Spreadsheet;
 using SpreadsheetLight;
 using Color = System.Drawing.Color;
+#pragma warning disable CS8602
 
 namespace SpreadSheetLightLibrary.Classes
 {

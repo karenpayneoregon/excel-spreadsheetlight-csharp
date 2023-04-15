@@ -2,8 +2,9 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<LangVersion>9.0</LangVersion>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 		<ApplicationIcon>Excel.ico</ApplicationIcon>
 	</PropertyGroup>
 

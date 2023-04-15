@@ -31,7 +31,7 @@ namespace OleDbDemoForm.Classes
             personTable.Load(cmd.ExecuteReader());
 
             personTable.Columns.Add("Gender", typeof(string));
-            personTable.Columns["Gender"].SetOrdinal(4);
+            personTable.Columns["Gender"]!.SetOrdinal(4);
 
 
             // easy way to hide columns
@@ -55,7 +55,6 @@ namespace OleDbDemoForm.Classes
                 row.SetField("Gender", 
                     genderTable
                         .AsEnumerable()
-                        // ReSharper disable once CompareOfFloatsByEqualityOperator
                         .FirstOrDefault(dataRow => dataRow.Field<double>("GenderId") == 
                                                    row.Field<double>("GenderId"))!
                         .Field<string>("Role"));

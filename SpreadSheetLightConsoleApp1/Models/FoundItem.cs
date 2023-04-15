@@ -1,4 +1,5 @@
-﻿namespace SpreadSheetLightConsoleApp.Models
+﻿#pragma warning disable CS8618
+namespace SpreadSheetLightConsoleApp.Models
 {
     /// <summary>
     /// mutable 

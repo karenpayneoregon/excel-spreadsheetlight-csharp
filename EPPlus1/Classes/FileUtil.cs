@@ -85,9 +85,9 @@ namespace EPPlus1.Classes
             var currentDir = AppDomain.CurrentDomain.BaseDirectory;
             while (!currentDir.EndsWith("bin"))
             {
-                currentDir = Directory.GetParent(currentDir).FullName.TrimEnd('\\');
+                currentDir = Directory.GetParent(currentDir)!.FullName.TrimEnd('\\');
             }
-            return new DirectoryInfo(currentDir).Parent;
+            return new DirectoryInfo(currentDir).Parent!;
         }
 
         public static DirectoryInfo GetSubDirectory(string directory, string subDirectory)

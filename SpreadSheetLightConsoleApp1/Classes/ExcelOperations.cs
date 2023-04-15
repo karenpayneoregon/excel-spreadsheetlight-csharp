@@ -43,7 +43,7 @@ namespace SpreadSheetLightConsoleApp.Classes
 
                 }
 
-                return (foundList, null);
+                return (foundList, null)!;
 
             }
             catch (Exception exception)

@@ -1,4 +1,5 @@
-﻿namespace OleDbDemoForm.Classes
+﻿#pragma warning disable CS8618
+namespace OleDbDemoForm.Classes
 {
     public class ExcelHelper
     {

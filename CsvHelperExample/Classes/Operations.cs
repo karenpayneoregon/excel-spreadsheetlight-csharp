@@ -1,128 +1,123 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelperExample.Models;
 using FastMember;
 
-namespace CsvHelperExample.Classes
+namespace CsvHelperExample.Classes;
+
+/// <summary>
+/// Provides an two examples for reading data known to be clean and one
+/// example where data may be malformed
+/// </summary>
+class Operations
 {
-    /// <summary>
-    /// Provides an two examples for reading data known to be clean and one
-    /// example where data may be malformed
-    /// </summary>
-    class Operations
+    public static DataTable ReadProducts()
     {
-        public static DataTable ReadProducts()
+        var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Products.csv");
+        var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
-            var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Products.csv");
-            var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
+            Encoding = Encoding.UTF8,
+            Delimiter = "," ,
+            HasHeaderRecord = false
+        };
+
+        using (var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        {
+            using (var textReader = new StreamReader(fs, Encoding.UTF8))
+            using (var csv = new CsvReader(textReader, configuration))
             {
-                Encoding = Encoding.UTF8,
-                Delimiter = "," ,
-                HasHeaderRecord = false
-            };
+                DataTable table = new();
+                using var reader = ObjectReader.Create(csv.GetRecords<Products>().ToList());
 
-            using (var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                using (var textReader = new StreamReader(fs, Encoding.UTF8))
-                using (var csv = new CsvReader(textReader, configuration))
-                {
-                    DataTable table = new();
-                    using var reader = ObjectReader.Create(csv.GetRecords<Products>().ToList());
+                table.Load(reader);
 
-                    table.Load(reader);
-
-                    table.Columns["DiscontinuedDate"].SetOrdinal(4);
-                    return table;
-                }
+                table.Columns["DiscontinuedDate"]!.SetOrdinal(4);
+                return table;
             }
         }
+    }
 
-        public static DataTable ReadAccounts()
-        {
+    public static DataTable ReadAccounts()
+    {
          
-            var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Accounts.csv");
-            var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
-            {
-                Encoding = Encoding.UTF8,
-                Delimiter = ",",
-                HasHeaderRecord = false,
-            };
+        var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Accounts.csv");
+        var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
+        {
+            Encoding = Encoding.UTF8,
+            Delimiter = ",",
+            HasHeaderRecord = false,
+        };
 
-            using (FileStream fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        using (FileStream fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        {
+            using (var textReader = new StreamReader(fs, Encoding.UTF8))
+            using (var csv = new CsvReader(textReader, configuration))
             {
-                using (var textReader = new StreamReader(fs, Encoding.UTF8))
-                using (var csv = new CsvReader(textReader, configuration))
-                {
                     
-                    DataTable table = new();
-                    using var reader = ObjectReader.Create(csv.GetRecords<Account>().ToList());
-                    table.Load(reader);
-                    return table;
-                }
+                DataTable table = new();
+                using var reader = ObjectReader.Create(csv.GetRecords<Account>().ToList());
+                table.Load(reader);
+                return table;
             }
         }
-        /// <summary>
-        /// How to handle malformed lines
-        /// </summary>
-        public static (bool success, List<Account>) ReadAccounts1(string fileName)
-        {
-            List<Account> accounts = new();
+    }
+    /// <summary>
+    /// How to handle malformed lines
+    /// </summary>
+    public static (bool success, List<Account>) ReadAccounts1(string fileName)
+    {
+        List<Account> accounts = new();
 
-            StringBuilder errorBuilder = new ();
+        StringBuilder errorBuilder = new ();
             
-            var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
-            {
-                Encoding = Encoding.UTF8,
-                Delimiter = ",",
-                HasHeaderRecord = false,
-            };
+        var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
+        {
+            Encoding = Encoding.UTF8,
+            Delimiter = ",",
+            HasHeaderRecord = false,
+        };
 
-            using (var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        using (var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        {
+            using (var textReader = new StreamReader(fs, Encoding.UTF8))
+            using (var csv = new CsvReader(textReader, configuration))
             {
-                using (var textReader = new StreamReader(fs, Encoding.UTF8))
-                using (var csv = new CsvReader(textReader, configuration))
+
+                while (csv.Read())
                 {
-
-                    while (csv.Read())
+                    try
                     {
-                        try
-                        {
-                            var record = csv.GetRecord<Account>();
-                            accounts.Add(record);
-                        }
-                        catch (Exception ex)
-                        {
-                            errorBuilder.AppendLine(ex.Message);
-                        }
+                        var record = csv.GetRecord<Account>();
+                        accounts.Add(record);
+                    }
+                    catch (Exception ex)
+                    {
+                        errorBuilder.AppendLine(ex.Message);
                     }
                 }
+            }
 
-                if (errorBuilder.Length >0)
-                {
-                    errorBuilder.Insert(0, $"Errors for {fileName}\n");
+            if (errorBuilder.Length >0)
+            {
+                errorBuilder.Insert(0, $"Errors for {fileName}\n");
 
-                    File.WriteAllText(
-                        Path.Combine(
-                            AppDomain.CurrentDomain.BaseDirectory,"ParseErrors.txt"), 
-                        errorBuilder.ToString());
+                File.WriteAllText(
+                    Path.Combine(
+                        AppDomain.CurrentDomain.BaseDirectory,"ParseErrors.txt"), 
+                    errorBuilder.ToString());
 
-                    return (false, null);
-                }
-                else
-                {
-                    return (true, accounts);
-                }
+                return (false, null);
+            }
+            else
+            {
+                return (true, accounts);
             }
         }
-
-
-
     }
+
+
+
 }
