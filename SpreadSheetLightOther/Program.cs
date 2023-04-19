@@ -2,7 +2,7 @@
 
 namespace SpreadSheetLightOther;
 
-internal class Program
+internal partial class Program
 {
     static void Main(string[] args)
     {
