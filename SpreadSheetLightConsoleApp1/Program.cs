@@ -1,30 +1,28 @@
 ﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+using Spectre.Console;
 using SpreadSheetLightConsoleApp.Classes;
 using SpreadSheetLightConsoleApp.Models;
 
 namespace SpreadSheetLightConsoleApp;
 
-class Program
+partial class Program
 {
     static void Main(string[] args)
     {
         var value = "karen";
 
-        SearchItem searchItem = new(
-            "Demo1.xlsx", 
-            "sheet1", 
-            value, 
+        SearchItem searchItem = new("Demo1.xlsx", "sheet1", value, 
             StringComparison.InvariantCultureIgnoreCase);
 
 
-        (IReadOnlyList<FoundItemImmutable> items, Exception exception) = ExcelOperations.FindText(searchItem);
+        (IReadOnlyList<FoundItemImmutable> items, Exception exception) = 
+            ExcelOperations.FindText(searchItem);
             
         if (exception is null)
         {
             if (items.Count >0)
             {
-                Console.WriteLine($"Found {value} {items.Count} times");
+                AnsiConsole.MarkupLine($"[white]Found[/] [cyan]{value}[/] [white]{items.Count}[/] times");
                 foreach (var foundItem in items)
                 {
                     Console.WriteLine($"{foundItem}");
@@ -32,7 +30,7 @@ class Program
             }
             else
             {
-                Console.WriteLine($"Did not find {value}");
+                AnsiConsole.MarkupLine($"[red]Did not find {value}[/]");
             }
 
             Console.ReadLine();
@@ -45,9 +43,4 @@ class Program
             
     }
 
-    [ModuleInitializer]
-    public static void Init1()
-    {
-        Console.Title = "Working with immutable read from Excel";
-    }
 }

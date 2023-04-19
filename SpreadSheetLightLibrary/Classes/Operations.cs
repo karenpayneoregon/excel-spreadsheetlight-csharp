@@ -71,8 +71,7 @@ public class Operations
     {
         using SLDocument document = new(fileName);
         var workSheets = document.GetSheetNames(false);
-        if (workSheets.Any((workSheetName) => 
-                string.Equals(workSheetName, sheetName, StringComparison.CurrentCultureIgnoreCase)))
+        if (workSheets.Any((workSheetName) => string.Equals(workSheetName, sheetName, StringComparison.CurrentCultureIgnoreCase)))
         {
             if (workSheets.Count > 1)
             {
