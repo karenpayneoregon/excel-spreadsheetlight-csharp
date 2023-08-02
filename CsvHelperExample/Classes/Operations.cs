@@ -24,19 +24,17 @@ class Operations
             HasHeaderRecord = false
         };
 
-        using (var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        using var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+        using (var textReader = new StreamReader(fs, Encoding.UTF8))
+        using (var csv = new CsvReader(textReader, configuration))
         {
-            using (var textReader = new StreamReader(fs, Encoding.UTF8))
-            using (var csv = new CsvReader(textReader, configuration))
-            {
-                DataTable table = new();
-                using var reader = ObjectReader.Create(csv.GetRecords<Products>().ToList());
+            DataTable table = new();
+            using var reader = ObjectReader.Create(csv.GetRecords<Products>().ToList());
 
-                table.Load(reader);
+            table.Load(reader);
 
-                table.Columns["DiscontinuedDate"]!.SetOrdinal(4);
-                return table;
-            }
+            table.Columns["DiscontinuedDate"]!.SetOrdinal(4);
+            return table;
         }
     }
 
@@ -51,17 +49,15 @@ class Operations
             HasHeaderRecord = false,
         };
 
-        using (FileStream fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        using FileStream fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+        using (var textReader = new StreamReader(fs, Encoding.UTF8))
+        using (var csv = new CsvReader(textReader, configuration))
         {
-            using (var textReader = new StreamReader(fs, Encoding.UTF8))
-            using (var csv = new CsvReader(textReader, configuration))
-            {
                     
-                DataTable table = new();
-                using var reader = ObjectReader.Create(csv.GetRecords<Account>().ToList());
-                table.Load(reader);
-                return table;
-            }
+            DataTable table = new();
+            using var reader = ObjectReader.Create(csv.GetRecords<Account>().ToList());
+            table.Load(reader);
+            return table;
         }
     }
     /// <summary>
@@ -80,41 +76,39 @@ class Operations
             HasHeaderRecord = false,
         };
 
-        using (var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        using var fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+        using (var textReader = new StreamReader(fs, Encoding.UTF8))
+        using (var csv = new CsvReader(textReader, configuration))
         {
-            using (var textReader = new StreamReader(fs, Encoding.UTF8))
-            using (var csv = new CsvReader(textReader, configuration))
-            {
 
-                while (csv.Read())
+            while (csv.Read())
+            {
+                try
                 {
-                    try
-                    {
-                        var record = csv.GetRecord<Account>();
-                        accounts.Add(record);
-                    }
-                    catch (Exception ex)
-                    {
-                        errorBuilder.AppendLine(ex.Message);
-                    }
+                    var record = csv.GetRecord<Account>();
+                    accounts.Add(record);
+                }
+                catch (Exception ex)
+                {
+                    errorBuilder.AppendLine(ex.Message);
                 }
             }
+        }
 
-            if (errorBuilder.Length >0)
-            {
-                errorBuilder.Insert(0, $"Errors for {fileName}\n");
+        if (errorBuilder.Length >0)
+        {
+            errorBuilder.Insert(0, $"Errors for {fileName}\n");
 
-                File.WriteAllText(
-                    Path.Combine(
-                        AppDomain.CurrentDomain.BaseDirectory,"ParseErrors.txt"), 
-                    errorBuilder.ToString());
+            File.WriteAllText(
+                Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,"ParseErrors.txt"), 
+                errorBuilder.ToString());
 
-                return (false, null);
-            }
-            else
-            {
-                return (true, accounts);
-            }
+            return (false, null);
+        }
+        else
+        {
+            return (true, accounts);
         }
     }
 

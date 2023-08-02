@@ -1,0 +1,19 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container">
+    <div class="alert alert-primary" role="alert">
+        <h1 class="fs-5">Quick and dirty export DataTable to Excel via SpreadSheetLight</h1>    
+    </div>
+    <div class="row">
+        <form method="post">
+            <button type="submit" id="btn-submit" class="btn btn-outline-dark">Enter</button>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-auto ms-1 mt-2">@Model.Message</div>
+    </div>
+</div>
