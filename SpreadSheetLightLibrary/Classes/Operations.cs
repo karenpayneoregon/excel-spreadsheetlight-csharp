@@ -17,11 +17,18 @@ public class Operations
     public bool CreateNewFile(string fileName, string sheetName)
     {
         using SLDocument document = new();
-        
-        document.RenameWorksheet("Sheet1", sheetName);
-        document.SaveAs(fileName);
 
-        return true;
+        try
+        {
+            document.RenameWorksheet("Sheet1", sheetName);
+            document.SaveAs(fileName);
+            return true;
+        }
+        catch (Exception)
+        {
+
+            return false;
+        }
     }
     /// <summary>
     /// Create a new Excel file
@@ -162,6 +169,26 @@ public class Operations
         document.Save();
 
         return true;
+
+    }
+
+    public static void SetCellValue(string excelFileName, string sheetName, string cell, string cellValue)
+    {
+        if (File.Exists(excelFileName))
+        {
+            try
+            {
+                using SLDocument document = new(excelFileName, sheetName);
+                if (document.GetSheetNames(false).Contains(sheetName))
+                {
+                    document.SetCellValue(cell, cellValue);
+                    document.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
 
     }
 

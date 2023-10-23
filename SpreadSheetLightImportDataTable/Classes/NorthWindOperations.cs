@@ -110,7 +110,8 @@ public class NorthWindOperations
 
         // one row below header
         document.SetActiveCell("A2");
-
+        //SLPageSettings pageSettings = new SLPageSettings() {ZoomScale = 80};
+        document.SetPageSettings(new SLPageSettings() { ZoomScale = 80 });
         // ensure header is visible when scrolling down
         document.FreezePanes(1,6);
 

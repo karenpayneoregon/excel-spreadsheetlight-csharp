@@ -51,7 +51,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utility", "Utility", "{CA7E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpreadSheetLight", "SpreadSheetLight", "{9AE6CE0F-0A5B-4B82-BC9B-ACCD37081074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpreadSheetLightRazorDemo", "SpreadSheetLightRazorDemo\SpreadSheetLightRazorDemo.csproj", "{1226552D-A319-4EA5-8F8F-5E897C04B8C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadSheetLightRazorDemo", "SpreadSheetLightRazorDemo\SpreadSheetLightRazorDemo.csproj", "{1226552D-A319-4EA5-8F8F-5E897C04B8C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleApp1", "ExampleApp1\ExampleApp1.csproj", "{7E989BBA-5101-4BA6-A3BD-FB2F68F911BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +117,10 @@ Global
 		{1226552D-A319-4EA5-8F8F-5E897C04B8C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1226552D-A319-4EA5-8F8F-5E897C04B8C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1226552D-A319-4EA5-8F8F-5E897C04B8C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E989BBA-5101-4BA6-A3BD-FB2F68F911BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E989BBA-5101-4BA6-A3BD-FB2F68F911BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E989BBA-5101-4BA6-A3BD-FB2F68F911BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E989BBA-5101-4BA6-A3BD-FB2F68F911BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +144,7 @@ Global
 		{56E33EB7-D8BE-4E72-8AF8-7371BDE3D769} = {594837FC-D109-4CBF-B598-FD6F7F8D6EBB}
 		{CA7EC995-1C52-404A-A857-7368F753CB1C} = {594837FC-D109-4CBF-B598-FD6F7F8D6EBB}
 		{9AE6CE0F-0A5B-4B82-BC9B-ACCD37081074} = {594837FC-D109-4CBF-B598-FD6F7F8D6EBB}
+		{7E989BBA-5101-4BA6-A3BD-FB2F68F911BA} = {80810258-67A9-47FA-9C1F-E8F354E99CE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {490BCC9D-B540-4589-AFF3-15CD641014BC}
