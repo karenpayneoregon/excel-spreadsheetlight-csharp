@@ -5,7 +5,7 @@ namespace SpreadSheetLightImportDataTable.LanguageExtensions;
 
 public static class Extensions
 {
-    public static DataTable ToDataTable<T>(this IEnumerable<T> sender, bool allowDbNull = false)
+    public static DataTable ToDataTable<T>(this IEnumerable<T> sender, bool allowDbNull)
     {
         DataTable table = new(typeof(T).Name);
         using var reader = ObjectReader.Create(sender);
@@ -17,6 +17,13 @@ public static class Extensions
             column.AllowDBNull = true;
         }
 
+        return table;
+    }
+    public static DataTable ToDataTable<T>(this IEnumerable<T> sender)
+    {
+        DataTable table = new(typeof(T).Name);
+        using var reader = ObjectReader.Create(sender);
+        table.Load(reader);
         return table;
     }
 }
