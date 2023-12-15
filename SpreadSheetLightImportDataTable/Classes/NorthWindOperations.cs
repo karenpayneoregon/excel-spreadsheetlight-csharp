@@ -45,7 +45,7 @@ public class NorthWindOperations
     /// </remarks>
     public static void CustomersToExcel(List<CustomersForExcel> list, string fileName)
     {
-        // SpreadSheetLight also has a DataTable so we must point to the correct class.
+        // SpreadSheetLight also has a DataTable, so we must point to the correct class.
         DataTable table = new();
 
         // ordinal index to the Modified column/property in the model
@@ -73,7 +73,7 @@ public class NorthWindOperations
         using var document = new SLDocument();
 
         // Setup first row style for worksheet
-        var headerStyle = HeaderStye(document);
+        var headerStyle = HeaderStyle(document);
 
         // Create a format/style for Modified data column
         SLStyle dateStyle = document.CreateStyle();
@@ -99,7 +99,7 @@ public class NorthWindOperations
         document.AutoFitColumn(dateColumnIndex + 1);
             
         /*
-         * By default the first sheet name is Sheet1, let's provide a meaningful name
+         * By default, the first sheet name is Sheet1, let's provide a meaningful name
          */
         document.RenameWorksheet(SLDocument.DefaultFirstSheetName, "Customers");
 
@@ -124,7 +124,7 @@ public class NorthWindOperations
     /// </summary>
     /// <param name="document">Instance of a <see cref="SLDocument"/></param>
     /// <returns>A <see cref="SLStyle"/></returns>
-    public static SLStyle HeaderStye(SLDocument document)
+    public static SLStyle HeaderStyle(SLDocument document)
     {
             
         SLStyle headerStyle = document.CreateStyle();
