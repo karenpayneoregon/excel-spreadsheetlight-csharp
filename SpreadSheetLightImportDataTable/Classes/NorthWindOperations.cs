@@ -13,7 +13,7 @@ using FastMember;
 
 // Provides classes to interact with Microsoft Excel 2007+
 using SpreadsheetLight;
-
+using SpreadSheetLightImportDataTable.LanguageExtensions;
 using Color = System.Drawing.Color;
 #pragma warning disable CS8602
 
@@ -45,20 +45,15 @@ public class NorthWindOperations
     /// </remarks>
     public static void CustomersToExcel(List<CustomersForExcel> list, string fileName)
     {
-        // SpreadSheetLight also has a DataTable, so we must point to the correct class.
-        DataTable table = new();
 
+
+        var table = list.ToDataTable();
+
+        
         // ordinal index to the Modified column/property in the model
         int dateColumnIndex = 6;
 
-        /*
-         * Creates an instance of ObjectReader for transforming a List of CustomersForExcel
-         * to a DataTable
-         */
-        using var reader = ObjectReader.Create(list);
 
-        // Load List of CustomersForExcel into a DataTable
-        table.Load(reader);
             
         /*
          * Rearrange visual order of data columns
@@ -84,7 +79,7 @@ public class NorthWindOperations
          */
 
         document.ImportDataTable(1, SLConvert.ToColumnIndex("A"), table, true);
-
+        
         /*
          * Hide the primary key column
          */

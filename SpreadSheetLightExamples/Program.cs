@@ -10,8 +10,8 @@ partial class Program
 {
     static void Main(string[] args)
     {
-        //ImportTabTextFile();
-        //CreatePopulateCustomerData();
+        ImportTabTextFile();
+        CreatePopulateCustomerData();
         Operations.SetCellValue("Customers.xlsx", "Example", "A1","Hello");
         Console.ReadLine();
     }
@@ -22,7 +22,8 @@ partial class Program
     private static void ImportTabTextFile()
     {
         var importFileName = "Products.txt";
-        var excelFileName = "ProductsImported.xlsx";
+        //var excelFileName = "ProductsImported.xlsx";
+        var excelFileName = "Products.xlsx";
         var sheetName = "Products";
 
         var success = Operations.ImportTabDelimitedTextFile(
@@ -41,7 +42,7 @@ partial class Program
             Console.WriteLine("Failed");
         }
 
-        Console.ReadLine();
+        //Console.ReadLine();
     }
 
     /// <summary>
