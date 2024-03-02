@@ -134,36 +134,17 @@ public class Operations
         
         Dictionary<string, DateTime> dictDates = new()
         {
-            {
-                "H4", new(2017,
-                    1,
-                    1)
-            },
-            {
-                "H5", new(2017,
-                    1,
-                    2)
-            },
-            {
-                "H6", new(2017,
-                    1,
-                    3)
-            },
-            {
-                "H7", new(2017,
-                    1,
-                    4)
-            }
+            { "H4", new(2017, 1, 1) },
+            { "H5", new(2017, 1, 2) },
+            { "H6", new(2017, 1, 3) },
+            { "H7", new(2017, 1, 4) }
         };
 
-        foreach (var dateItem in dictDates)
+        foreach (var (cell, dateTime) in dictDates)
         {
-            if (document.SetCellValue(dateItem.Key, dateItem.Value))
-            {
-                document.SetCellStyle(dateItem.Key, dateStyle);
-                document.SetColumnWidth(dateItem.Key, 12);
-            }
-
+            if (!document.SetCellValue(cell, dateTime)) continue;
+            document.SetCellStyle(cell, dateStyle);
+            document.SetColumnWidth(cell, 12);
         }
 
         document.Save();
