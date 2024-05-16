@@ -6,6 +6,7 @@ An example which reads from a specific worksheet in an Excel file with the first
 
 - Create Examples database
 - Run Scripts\populate.sql
+- On each run the table is emptied using Dapper NuGet package.
 
 ## Connection string
 

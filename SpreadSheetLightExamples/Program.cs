@@ -54,7 +54,7 @@ partial class Program
 
         try
         {
-            NorthWindOperations.CustomersToExcel(list, IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Customers.xlsx"));
+            NorthWindOperations.CustomersToExcel(list, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Customers.xlsx"));
             Console.WriteLine("Done");
         }
         catch (Exception exception) when (exception.Message.Contains("The process cannot access the file"))

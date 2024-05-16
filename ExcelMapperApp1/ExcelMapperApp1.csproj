@@ -7,6 +7,10 @@
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
+	<PropertyGroup Label="Normalise stack trace file locations">
+		<PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
+	</PropertyGroup>
+
 	<ItemGroup>
 	  <None Remove="readme.md" />
 	</ItemGroup>
@@ -22,12 +26,14 @@
 
 	<ItemGroup>
 		<PackageReference Include="ConsoleHelperLibrary" Version="1.0.2" />
+		<PackageReference Include="Dapper" Version="2.1.28" />
 		<PackageReference Include="ExcelMapper" Version="5.2.568" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<!-- ReSharper disable once VulnerablePackage -->
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
 	</ItemGroup>
 
 
@@ -41,6 +47,9 @@
 	  </None>
 	  <None Update="Customers.xlsx">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Excel1.xlsx">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
 

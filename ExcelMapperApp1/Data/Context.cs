@@ -21,7 +21,7 @@ public partial class Context : DbContext
     public virtual DbSet<Customers> Customers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=Examples;Integrated Security=True;Encrypt=False");
+        => optionsBuilder.UseSqlServer(ConnectionString());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
