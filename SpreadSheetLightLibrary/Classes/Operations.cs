@@ -193,7 +193,7 @@ public class Operations
 
 
             using SLDocument document = new();
-            var headerStyle = HeaderStye(document);
+            var headerStyle = HeaderStyle(document);
             var sheets = document.GetSheetNames(false);
             if (sheets.Any(workSheetName => string.Equals(workSheetName, pSheetName, StringComparison.CurrentCultureIgnoreCase)))
             {
@@ -243,7 +243,7 @@ public class Operations
     }
 
     /// <summary>
-    /// demonstrate how to get used columns in the format a a letter rather than an integer
+    /// demonstrate how to get used columns in the format a letter rather than an integer
     /// </summary>
     /// <returns></returns>
     public string[] UsedCellsInWorkSheet(string fileName, string sheetName)
@@ -253,8 +253,7 @@ public class Operations
         SLWorksheetStatistics stats = document.GetWorksheetStatistics();
 
         IEnumerable<string> columnNames = Enumerable.Range(1, stats.EndColumnIndex)
-            // ReSharper disable once ConvertClosureToMethodGroup
-            .Select((cellIndex) => SLConvert.ToColumnName(cellIndex));
+            .Select(SLConvert.ToColumnName);
 
         return columnNames.ToArray();
     }
@@ -265,7 +264,7 @@ public class Operations
         using SLDocument document = new(fileName, sheetName);
 
         /*
-         * get statistics, in this case we want the last used row so we
+         * get statistics, in this case we want the last used row, so we
          * simply index into EndRowIndex yet there are more properties.
          */
         return document.GetWorksheetStatistics().EndRowIndex;
@@ -298,7 +297,7 @@ public class Operations
     }
 
 
-    public static SLStyle HeaderStye(SLDocument document)
+    public static SLStyle HeaderStyle(SLDocument document)
     {
 
         SLStyle headerStyle = document.CreateStyle();
