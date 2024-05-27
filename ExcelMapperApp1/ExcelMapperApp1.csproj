@@ -11,6 +11,16 @@
 		<PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<SatelliteResourceLanguages>en-US;es</SatelliteResourceLanguages>
+	</PropertyGroup>
+
+
+	<Target Name="MakeTempFolder" AfterTargets="Build">
+		<MakeDir Directories="$(OutDir)Excel" />
+	</Target>
+
+
 	<ItemGroup>
 	  <None Remove="readme.md" />
 	</ItemGroup>
@@ -31,9 +41,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="SpreadsheetLight.Cross.Platform" Version="3.5.1" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<!-- ReSharper disable once VulnerablePackage -->
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+		<PackageReference Include="ObjectDumper.NET" Version="4.2.7" />
 	</ItemGroup>
 
 
@@ -50,6 +65,12 @@
 	  </None>
 	  <None Update="Excel1.xlsx">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Nested.xlsx">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Nested1.xlsx">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Products.xlsx">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

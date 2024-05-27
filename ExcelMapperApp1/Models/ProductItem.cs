@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExcelMapperApp1.Models;
+﻿namespace ExcelMapperApp1.Models;
 public class ProductItem
 {
     public int ProductID { get; set; }

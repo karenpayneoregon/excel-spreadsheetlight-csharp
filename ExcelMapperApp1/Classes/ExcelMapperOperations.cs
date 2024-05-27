@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ExcelMapperApp1.Data;
+﻿using ExcelMapperApp1.Data;
 using ExcelMapperApp1.Models;
 using Ganss.Excel;
+using static ExcelMapperApp1.Classes.LightHelpers;
+using static ExcelMapperApp1.Classes.SpectreConsoleHelpers;
 
 namespace ExcelMapperApp1.Classes;
-internal class Operations
+internal class ExcelMapperOperations
 {
     /// <summary>
     /// There are two columns, here we ignore the second column
     /// </summary>
     public static async Task SingleColumnExample()
     {
+        PrintCyan();
+
         const string excelFile = "Excel1.xlsx";
 
         ExcelMapper excel = new();
@@ -25,11 +23,32 @@ internal class Operations
     }
 
     /// <summary>
+    /// Read nested data from Nested.xlsx where <see cref="Person"/> has an <see cref="Address"/>
+    /// </summary>
+    public static async Task NestedReadPeople()
+    {
+        PrintCyan();
+
+        const string excelFile = "Nested.xlsx";
+
+        ExcelMapper excel = new();
+
+        var contactList =  (await excel.FetchAsync<Person>(excelFile, "Contacts")).ToList();
+        
+        AnsiConsole.MarkupLine(ObjectDumper.Dump(contactList)
+            .Replace("{Person}", "[cyan]{Person}[/]")
+            .Replace("Address:", "[cyan]Address:[/]"));
+
+    }
+    /// <summary>
     /// Read products from Products.xlsx as list of <see cref="Products"/> then update
     /// several products and save to a new file ProductsOut.xlsx
     /// </summary>
     public static async Task ReadProductsAndUpdate()
     {
+
+        PrintCyan();
+
         const string excelReadFile = "Products.xlsx";
         const string excelWriteFile = "ProductsOut.xlsx";
 
@@ -79,6 +98,8 @@ internal class Operations
     public static async Task ReadProductsCreateCopyWithLessProperties()
     {
 
+        PrintCyan();
+
         const string excelReadFile = "Products.xlsx";
         const string excelWriteFile = "ProductsCopy.xlsx";
 
@@ -117,17 +138,25 @@ internal class Operations
     /// </summary>
     public static async Task CustomersToDatabase()
     {
+        
+        PrintCyan();
+        const string excelFile = "Customers.xlsx";
+
+        if (SheetExists(excelFile, nameof(Customers)) == false)
+        {
+            AnsiConsole.MarkupLine($"[red]Sheet {nameof(Customers)} not found in {excelFile}[/]");
+            return;
+        }
+
         try
         {
             DapperOperations operations = new();
             operations.Reset();
 
-            const string excelFile = "Customers.xlsx";
             ExcelMapper excel = new();
             await using var context = new Context();
 
-            var customers = (await excel.FetchAsync<Customers>(excelFile,
-                nameof(Customers))).ToList();
+            var customers = (await excel.FetchAsync<Customers>(excelFile, nameof(Customers))).ToList();
 
             context.Customers.AddRange(customers);
             var affected = await context.SaveChangesAsync();
@@ -138,7 +167,5 @@ internal class Operations
         {
             ex.ColorWithCyanFuchsia();
         }
-
-        AnsiConsole.MarkupLine("[yellow]Done[/]");
     }
 }

@@ -1,4 +1,5 @@
-﻿using SpreadsheetLight;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using SpreadsheetLight;
 using SpreadSheetLightConsoleApp.Models;
 
 namespace SpreadSheetLightConsoleApp.Classes;
@@ -46,5 +47,18 @@ public class ExcelOperations
         }
 
     }
+
+    public static void Iterate()
+    {
+        using SLDocument document = new("Excel1.xlsx");
+        int columnIndex = 1;
+        var stats = document.GetWorksheetStatistics();
+
+        for (int rowIndex = 1; rowIndex < stats.EndRowIndex + 1; rowIndex++)
+        {
+            Console.WriteLine(document.GetCellValueAsString(rowIndex, columnIndex));
+        }
+    }
+
      
 }

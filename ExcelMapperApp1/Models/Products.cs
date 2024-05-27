@@ -24,5 +24,6 @@ public class Products
 
     public short? ReorderLevel { get; set; }
 
-    
+    public override string ToString() => ProductName;
+
 }

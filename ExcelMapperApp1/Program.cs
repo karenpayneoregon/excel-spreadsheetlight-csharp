@@ -14,10 +14,14 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
-        await Operations.ReadProductsAndUpdate();
-        await Operations.ReadProductsCreateCopyWithLessProperties();
-        await Operations.SingleColumnExample();
-        await Operations.CustomersToDatabase();
+        await ExcelMapperOperations.NestedReadPeople();
+        await ExcelMapperOperations.ReadProductsAndUpdate();
+        await ExcelMapperOperations.ReadProductsCreateCopyWithLessProperties();
+        await ExcelMapperOperations.SingleColumnExample();
+        await ExcelMapperOperations.CustomersToDatabase();
+
+        var (rows, hasIssues) = LightOperations.Iterate();
+        AnsiConsole.MarkupLine(hasIssues ? $"[red]Issues found in rows: {string.Join(",", rows)}[/]" : "[green]No issues found[/]");
 
         Console.ReadLine();
     }
