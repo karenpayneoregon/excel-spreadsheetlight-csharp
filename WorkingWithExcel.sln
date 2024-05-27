@@ -57,7 +57,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleApp1", "ExampleApp1\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelMapperApp1", "ExcelMapperApp1\ExcelMapperApp1.csproj", "{9719B900-F4A6-4554-A588-64332FA0754E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpreadSheetLightIterateColumn", "SpreadSheetLightIterateColumn\SpreadSheetLightIterateColumn.csproj", "{646823DF-3646-4C8E-BD68-B9F333E4092D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadSheetLightIterateColumn", "SpreadSheetLightIterateColumn\SpreadSheetLightIterateColumn.csproj", "{646823DF-3646-4C8E-BD68-B9F333E4092D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,6 +11,13 @@ namespace Automation
         {
             Console.Title = "Code sample - Excel automation";
 
+
+            Console.ReadLine();
+
+        }
+
+        private static void ReadSample()
+        {
             var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "People.xlsx");
             var sheetName = "People";
 
@@ -36,10 +43,6 @@ namespace Automation
             {
                 Console.WriteLine($"{kvp.Key,-10}{kvp.Value}");
             }
-
-            Console.ReadLine();
-
         }
- 
     }
 }

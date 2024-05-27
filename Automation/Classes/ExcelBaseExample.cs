@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -436,6 +437,8 @@ namespace Automation.Classes
             xlWorkBook = null;
             xlApp.Quit();
         }
+
+
         /// <summary>
         /// Same as above but in this case we release each object and note several more
         /// objects are used.
