@@ -10,6 +10,10 @@ Module Program
         Const excelFile = "Products.xlsx"
 
         Dim excel As New ExcelMapper()
+
+        ' Fetch data from the Excel file, and convert it to a list of Products
+        ' From here use the data as you wish.
+        ' You can set a breakpoint on Console.ReadLine() to inspect the data using the local window
         Dim products As List(Of Products) = excel.
                 Fetch(Of Products)(excelFile, "Products").
                 ToList()
