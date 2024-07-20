@@ -10,6 +10,9 @@
 		<PackageReference Include="ExcelMapper" Version="5.2.592" />
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="Spectre.Console" Version="0.48.0" />
+	</ItemGroup>
+	<ItemGroup>
 	  <None Update="Products.xlsx">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
