@@ -8,8 +8,10 @@ namespace CsvHelperExample
     {
         static void Main(string[] args)
         {
+            var dt = Operations.ReadAccounts();
             //WellFormedData();
-            MalFormedData();
+            //MalFormedData();
+            Console.ReadLine();
         }
         private static void WellFormedData()
         {

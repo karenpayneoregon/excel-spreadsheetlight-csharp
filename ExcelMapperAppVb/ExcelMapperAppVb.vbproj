@@ -13,6 +13,9 @@
 		<PackageReference Include="Spectre.Console" Version="0.48.0" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Update="Accounts1.csv">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Products.xlsx">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>

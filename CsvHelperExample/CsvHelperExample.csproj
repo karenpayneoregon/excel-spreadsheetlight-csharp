@@ -22,6 +22,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="Accounts1.csv">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="AccountsBad.csv">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
