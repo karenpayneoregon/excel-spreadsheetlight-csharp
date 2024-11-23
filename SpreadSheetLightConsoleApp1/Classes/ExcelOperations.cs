@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using SpreadsheetLight;
+﻿using SpreadsheetLight;
 using SpreadSheetLightConsoleApp.Models;
 
 namespace SpreadSheetLightConsoleApp.Classes;
@@ -48,6 +47,13 @@ public class ExcelOperations
 
     }
 
+    /// <summary>
+    /// Iterates through the first column of an Excel worksheet and prints each cell's value to the console.
+    /// </summary>
+    /// <remarks>
+    /// This method opens an Excel file named "Excel1.xlsx" and iterates through all rows in the first column,
+    /// printing the value of each cell to the console.
+    /// </remarks>
     public static void Iterate()
     {
         using SLDocument document = new("Excel1.xlsx");
@@ -59,6 +65,5 @@ public class ExcelOperations
             Console.WriteLine(document.GetCellValueAsString(rowIndex, columnIndex));
         }
     }
-
      
 }

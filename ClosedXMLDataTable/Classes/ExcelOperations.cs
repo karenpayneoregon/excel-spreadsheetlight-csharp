@@ -6,9 +6,9 @@ namespace ClosedXMLDataTable.Classes;
 public class ExcelOperations
 {
     /// <summary>
-    /// Create new Excel file
+    /// Creates an Excel file with a worksheet populated with sample data.
     /// </summary>
-    /// <param name="fileName">file name to create</param>
+    /// <param name="fileName">The name of the Excel file to create.</param>
     public static void Create(string fileName)
     {
         var workbook = new XLWorkbook();
@@ -44,6 +44,13 @@ public class ExcelOperations
         return table;
     }
 
+    /// <summary>
+    /// Writes a value to a specific cell in an existing Excel file.
+    /// </summary>
+    /// <param name="reportFilePath">The path to the Excel file.</param>
+    /// <param name="row">The row number of the cell (1-based index).</param>
+    /// <param name="col">The column number of the cell (1-based index).</param>
+    /// <param name="value">The value to write to the cell.</param>
     public static void WriteToCell(string reportFilePath, int row, int col, string value)
     {
         using var workbook = new XLWorkbook(reportFilePath);

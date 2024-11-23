@@ -45,7 +45,7 @@ public class Operations
     }
 
     /// <summary>
-    /// Add a new sheet if it does not currently exists.
+    /// Add a new sheet if it does not currently exist.
     /// </summary>
     /// <param name="fileName"></param>
     /// <param name="sheetName"></param>
@@ -153,6 +153,13 @@ public class Operations
 
     }
 
+    /// <summary>
+    /// Sets the value of a specified cell in a given Excel sheet.
+    /// </summary>
+    /// <param name="excelFileName">The name of the Excel file.</param>
+    /// <param name="sheetName">The name of the sheet where the cell is located.</param>
+    /// <param name="cell">The address of the cell to set the value for (e.g., "A1").</param>
+    /// <param name="cellValue">The value to set in the specified cell.</param>
     public static void SetCellValue(string excelFileName, string sheetName, string cell, string cellValue)
     {
         if (File.Exists(excelFileName))
@@ -168,6 +175,7 @@ public class Operations
             }
             catch (Exception ex)
             {
+                // ignored - could be logged to a file via Serilog
             }
         }
 
@@ -224,8 +232,7 @@ public class Operations
             {
                 document.AutoFitColumn(columnIndex);
             }
-
-                
+            
             document.SetActiveCell("C2");
 
             // ensure header is visible when scrolling down
@@ -258,6 +265,12 @@ public class Operations
         return columnNames.ToArray();
     }
 
+    /// <summary>
+    /// Retrieves the last used row index in the specified worksheet of an Excel file.
+    /// </summary>
+    /// <param name="fileName">The name of the Excel file.</param>
+    /// <param name="sheetName">The name of the worksheet within the Excel file.</param>
+    /// <returns>The index of the last used row in the specified worksheet.</returns>
     public static int GetWorkSheetLastRow(string fileName, string sheetName)
     {
 
@@ -283,12 +296,15 @@ public class Operations
         return document.GetSheetNames(false);
     }
 
+
     /// <summary>
-    /// Determine if a sheet exists in the specified excel file
+    /// Checks if a sheet with the specified name exists in the given Excel file.
     /// </summary>
-    /// <param name="fileName"></param>
-    /// <param name="pSheetName"></param>
-    /// <returns></returns>
+    /// <param name="fileName">The path to the Excel file.</param>
+    /// <param name="pSheetName">The name of the sheet to check for existence.</param>
+    /// <returns>
+    /// <c>true</c> if the sheet exists; otherwise, <c>false</c>.
+    /// </returns>
     public bool SheetExists(string fileName, string pSheetName)
     {
         using SLDocument document = new(fileName);
@@ -297,6 +313,11 @@ public class Operations
     }
 
 
+    /// <summary>
+    /// Creates and returns a header style for the specified SLDocument.
+    /// </summary>
+    /// <param name="document">The SLDocument for which the header style is created.</param>
+    /// <returns>An SLStyle object representing the header style.</returns>
     public static SLStyle HeaderStyle(SLDocument document)
     {
 

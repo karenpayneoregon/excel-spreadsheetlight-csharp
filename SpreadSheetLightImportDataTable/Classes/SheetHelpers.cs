@@ -183,6 +183,7 @@ public class SheetHelpers
             return (false, exception);
         }
     }
+
     /// <summary>
     /// Get last row in <see cref="pFileName"/> for <see cref="pSheetName"/>
     /// </summary>

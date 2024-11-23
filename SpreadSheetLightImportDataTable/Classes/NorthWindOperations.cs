@@ -21,7 +21,13 @@ namespace SpreadSheetLightImportDataTable.Classes;
 
 public class NorthWindOperations
 {
-
+    /// <summary>
+    /// Exports the provided <see cref="DataTable"/> to an Excel file.
+    /// </summary>
+    /// <param name="table">The <see cref="DataTable"/> to export.</param>
+    /// <param name="fileName">The name of the file to save the Excel document as.</param>
+    /// <param name="includeHeader">A boolean indicating whether to include the header row in the Excel file.</param>
+    /// <param name="sheetName">The name to assign to the Excel worksheet.</param>
     public static void ExportToExcel(DataTable table, string fileName, bool includeHeader, string sheetName)
     {
         using var document = new SLDocument();

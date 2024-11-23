@@ -77,11 +77,29 @@ public class ExportUsingRazor
     {
         using var document = new SLDocument();
 
+                document.ImportDataTable(row, SLConvert.ToColumnIndex("A"), table, includeHeader);
+
+        // give sheet a useful name
+        document.RenameWorksheet(SLDocument.DefaultFirstSheetName, sheetName);
+
+        document.SaveAs(fileName);
+    }
+
+    public static void ExportToExcel1(DataTable table, string fileName, bool includeHeader, string sheetName, int row)
+    {
+        using var document = new SLDocument();
+
 
         document.ImportDataTable(row, SLConvert.ToColumnIndex("A"), table, includeHeader);
 
         // give sheet a useful name
         document.RenameWorksheet(SLDocument.DefaultFirstSheetName, sheetName);
+
+        SLStyle dateStyle = document.CreateStyle();
+        dateStyle.FormatCode = "mm-dd-yyyy";
+        // format a specific column using above style
+        int dateColumnIndex = 6;
+        document.SetColumnStyle(dateColumnIndex, dateStyle);
 
         document.SaveAs(fileName);
     }
