@@ -96,3 +96,11 @@ Personally my choice is `GemBox.SpreadSheet` and `Asose.Cells` which are not che
 - There is one Excel automation code sample, best to avoid automation as it can have issues with versioning, server side use and is not cross-platform.
 - When a database is used the project incudes a script to create the database.
 - Code written in Microsoft Visual Studio 2019, .NET Core 5, C#9 and will work in Microsoft Visual Studio 2022, .NET Core 6.
+
+## ExcelMapper
+
+See the following [repository](https://github.com/karenpayneoregon/ExcelMapperSamples) which has some cool code samples.
+
+### Provided Samples
+
+:heavy_check_mark: See [Tests.cs](https://github.com/mganss/ExcelMapper/blob/master/ExcelMapper.Tests/Tests.cs#L3118) in ExcelMapper repository for more examples.
