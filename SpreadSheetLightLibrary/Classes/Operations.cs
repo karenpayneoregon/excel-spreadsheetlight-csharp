@@ -281,8 +281,30 @@ public class Operations
          * simply index into EndRowIndex yet there are more properties.
          */
         return document.GetWorksheetStatistics().EndRowIndex;
+    }
 
-
+    /// <summary>
+    /// Retrieves the last row and column indices used in a specified worksheet of an Excel file.
+    /// </summary>
+    /// <param name="fileName">The full path to the Excel file.</param>
+    /// <param name="sheetName">The name of the worksheet to inspect.</param>
+    /// <returns>
+    /// A tuple containing:
+    /// <list type="bullet">
+    /// <item>
+    /// <description><c>EndRowIndex</c>: The index of the last row with data in the worksheet.</description>
+    /// </item>
+    /// <item>
+    /// <description><c>EndColumnIndex</c>: The index of the last column with data in the worksheet.</description>
+    /// </item>
+    /// </list>
+    /// </returns>
+    public static (int EndRowIndex, int EndColumnIndex) GetLastRowColumn(string fileName, string sheetName)
+    {
+        using SLDocument document = new(fileName, sheetName);
+        return (
+            document.GetWorksheetStatistics().EndRowIndex, 
+            document.GetWorksheetStatistics().EndColumnIndex);
     }
 
     /// <summary>
