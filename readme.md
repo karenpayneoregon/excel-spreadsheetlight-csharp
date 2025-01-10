@@ -6,7 +6,12 @@ For the majority of code samples they can be used cross-platform.
 
 ![Title1](assets/Title1.png)
 
-# Stuck on automation
+## History
+
+- 2022 - Initial commit
+- 2024 - Updated majority of projects to .NET 9
+
+## Stuck on automation
 
 For ages coders and developers alike believe that when working with Excel that Excel automation is the best way but there are many issues while when working with .xlsx libraries like GemBox, Aspose cells and others solve these problems. 
 

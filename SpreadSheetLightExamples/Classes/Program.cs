@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 
 // ReSharper disable once CheckNamespace
@@ -14,8 +13,3 @@ namespace SpreadSheetLightExamples
         }
     }
 }
-
-
-
-
-

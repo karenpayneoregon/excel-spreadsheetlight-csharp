@@ -85,6 +85,17 @@ public class ExportUsingRazor
         document.SaveAs(fileName);
     }
 
+    /// <summary>
+    /// Exports the provided <see cref="DataTable"/> to an Excel file with additional formatting options.
+    /// </summary>
+    /// <param name="table">The <see cref="DataTable"/> to export.</param>
+    /// <param name="fileName">The name of the Excel file to save the data to.</param>
+    /// <param name="includeHeader">A boolean indicating whether to include the header row in the export.</param>
+    /// <param name="sheetName">The name of the worksheet within the Excel file.</param>
+    /// <param name="row">The starting row in the Excel sheet where the data should be imported.</param>
+    /// <remarks>
+    /// This method applies a specific date format ("mm-dd-yyyy") to a designated column in the Excel file.
+    /// </remarks>
     public static void ExportToExcel1(DataTable table, string fileName, bool includeHeader, string sheetName, int row)
     {
         using var document = new SLDocument();

@@ -16,7 +16,7 @@ public class ExcelOperations
     public static (IReadOnlyList<FoundItemImmutable> items, Exception exception) FindText(SearchItem searchItem)
     {
 
-        List<FoundItemImmutable> foundList = new();
+        List<FoundItemImmutable> foundList = [];
 
         try
         {

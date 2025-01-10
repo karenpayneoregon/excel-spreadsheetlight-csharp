@@ -182,12 +182,18 @@ public class Operations
     }
 
     /// <summary>
-    /// Example for importing a tab delimited text file
+    /// Imports data from a tab-delimited text file into a specified worksheet in an Excel file.
     /// </summary>
-    /// <param name="textFileName"></param>
-    /// <param name="excelFileName"></param>
-    /// <param name="pSheetName"></param>
-    /// <returns></returns>
+    /// <param name="textFileName">The full path to the tab-delimited text file to be imported.</param>
+    /// <param name="excelFileName">The full path to the Excel file where the data will be imported.</param>
+    /// <param name="pSheetName">The name of the worksheet where the data will be imported. If the worksheet does not exist, it will be created.</param>
+    /// <returns>
+    /// <c>true</c> if the import operation is successful; otherwise, <c>false</c>.
+    /// </returns>
+    /// <remarks>
+    /// If the specified worksheet already exists, its content will be cleared before importing the new data.
+    /// The method also applies header styles, auto-fits columns, and freezes panes to ensure the header remains visible when scrolling.
+    /// </remarks>
     public static bool ImportTabDelimitedTextFile(string textFileName, string excelFileName, string pSheetName)
     {
         try

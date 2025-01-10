@@ -34,6 +34,23 @@ internal partial class Program
             .AddColumn("[cyan]First[/]")
             .BorderColor(Color.LightSlateGrey)
             .Title("[LightGreen]Excel data[/]");
+    /// <summary>
+    /// Creates and initializes a new <see cref="System.Data.DataTable"/> with predefined columns.
+    /// </summary>
+    /// <remarks>
+    /// The created <see cref="System.Data.DataTable"/> contains the following columns:
+    /// <list type="bullet">
+    /// <item>
+    /// <description><c>Id</c>: An auto-incrementing integer column starting from 1.</description>
+    /// </item>
+    /// <item>
+    /// <description><c>FirstName</c>: A string column for storing first names.</description>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    /// <returns>
+    /// A new instance of <see cref="System.Data.DataTable"/> with the specified columns.
+    /// </returns>
     private static DataTable CreateDataTable()
     {
         DataTable table = new();

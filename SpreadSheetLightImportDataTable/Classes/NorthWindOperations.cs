@@ -51,16 +51,11 @@ public class NorthWindOperations
     /// </remarks>
     public static void CustomersToExcel(List<CustomersForExcel> list, string fileName)
     {
-
-
         var table = list.ToDataTable();
-
         
         // ordinal index to the Modified column/property in the model
         int dateColumnIndex = 6;
-
-
-            
+        
         /*
          * Rearrange visual order of data columns
          */

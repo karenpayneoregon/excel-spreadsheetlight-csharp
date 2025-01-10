@@ -9,11 +9,31 @@ using FastMember;
 namespace CsvHelperExample.Classes;
 
 /// <summary>
-/// Provides an two examples for reading data known to be clean and one
+/// Provides two examples for reading data known to be clean and one
 /// example where data may be malformed
 /// </summary>
 class Operations
 {
+    /// <summary>
+    /// Reads product data from a CSV file and loads it into a <see cref="DataTable"/>.
+    /// </summary>
+    /// <remarks>
+    /// The method reads data from a file named "Products.csv" located in the application's base directory.
+    /// It uses the <see cref="CsvHelper"/> library to parse the CSV file and the <see cref="FastMember.ObjectReader"/> 
+    /// to load the data into a <see cref="DataTable"/>. The "DiscontinuedDate" column is reordered to the 5th position.
+    /// </remarks>
+    /// <returns>
+    /// A <see cref="DataTable"/> containing the product data read from the CSV file.
+    /// </returns>
+    /// <exception cref="FileNotFoundException">
+    /// Thrown if the "Products.csv" file is not found in the application's base directory.
+    /// </exception>
+    /// <exception cref="IOException">
+    /// Thrown if there is an issue accessing or reading the "Products.csv" file.
+    /// </exception>
+    /// <exception cref="CsvHelperException">
+    /// Thrown if there is an error while parsing the CSV file.
+    /// </exception>
     public static DataTable ReadProducts()
     {
         var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Products.csv");
@@ -38,6 +58,26 @@ class Operations
         }
     }
 
+    /// <summary>
+    /// Reads account data from a CSV file and loads it into a <see cref="DataTable"/>.
+    /// </summary>
+    /// <remarks>
+    /// The method reads data from a file named "Accounts.csv" located in the application's base directory.
+    /// It uses the <see cref="CsvHelper"/> library to parse the CSV file and the <see cref="FastMember.ObjectReader"/> 
+    /// to load the data into a <see cref="DataTable"/>.
+    /// </remarks>
+    /// <returns>
+    /// A <see cref="DataTable"/> containing the account data read from the CSV file.
+    /// </returns>
+    /// <exception cref="FileNotFoundException">
+    /// Thrown if the "Accounts.csv" file is not found in the application's base directory.
+    /// </exception>
+    /// <exception cref="IOException">
+    /// Thrown if there is an issue accessing or reading the "Accounts.csv" file.
+    /// </exception>
+    /// <exception cref="CsvHelperException">
+    /// Thrown if there is an error while parsing the CSV file.
+    /// </exception>
     public static DataTable ReadAccounts()
     {
          
